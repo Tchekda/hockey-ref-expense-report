@@ -318,3 +318,30 @@ textarea:valid {
 .signature-preview.empty::before {
   content: "Aucune signature sélectionnée";
 }
+
+/* Privacy Notice Footer */
+.privacy-notice {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border: 1px solid #d1e7dd;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.privacy-notice p {
+  margin: 0;
+  font-size: 14px;
+  color: #0f5132;
+  line-height: 1.5;
+}
+
+.privacy-notice a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.privacy-notice a:hover {
+  text-decoration: underline;
+}

@@ -15,38 +15,38 @@
             <h1>Note de Frais - Arbitre Hockey</h1>
         </header>
 
-        <form id="expenseForm">
+        <form id="expenseForm" autocomplete="off">
             <!-- Match Section -->
             <section class="form-section">
                 <h2>Match</h2>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="matchDate">Date du match</label>
-                        <input type="date" id="matchDate" required>
+                        <input type="date" id="matchDate" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="matchTime">Heure du match</label>
-                        <input type="time" id="matchTime" required>
+                        <input type="time" id="matchTime" autocomplete="off" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="matchLocation">Lieu du match</label>
-                    <input type="text" id="matchLocation" placeholder="Patinoire..." required>
+                    <input type="text" id="matchLocation" placeholder="Patinoire..." autocomplete="off" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="homeTeam">Équipe locale</label>
-                        <input type="text" id="homeTeam" required>
+                        <input type="text" id="homeTeam" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="awayTeam">Équipe visiteuse</label>
-                        <input type="text" id="awayTeam" required>
+                        <input type="text" id="awayTeam" autocomplete="off" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="category">Catégorie</label>
-                        <select id="category" required>
+                        <select id="category" autocomplete="off" required>
                             <option value="">Sélectionner...</option>
                             <option value="Synerglace Ligue Magnus">Synerglace Ligue Magnus</option>
                             <option value="Division 1">Division 1</option>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label for="position">Position</label>
-                        <select id="position" required>
+                        <select id="position" autocomplete="off" required>
                             <option value="">Sélectionner...</option>
                             <option value="Arbitre Principal">Arbitre Principal</option>
                             <option value="Juge de Ligne">Juge de Ligne</option>
@@ -77,25 +77,25 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="firstName">Prénom</label>
-                        <input type="text" id="firstName" required>
+                        <input type="text" id="firstName" autocomplete="given-name" required>
                     </div>
                     <div class="form-group">
                         <label for="lastName">Nom</label>
-                        <input type="text" id="lastName" required>
+                        <input type="text" id="lastName" autocomplete="family-name" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="licenseNumber">Numéro de licence</label>
-                    <input type="text" id="licenseNumber" required>
+                    <input type="text" id="licenseNumber" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Adresse postale</label>
                     <textarea id="address" rows="3" placeholder="Numéro, rue&#10;Code postal, Ville"
-                        required></textarea>
+                        autocomplete="street-address" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" autocomplete="email" required>
                 </div>
             </section>
 
@@ -105,11 +105,12 @@
                 <div class="form-group">
                     <label for="matchIndemnity">Indemnité de Match (€)</label>
                     <input type="number" id="matchIndemnity" step="0.01" min="0" placeholder="Payée par le club"
-                        required>
+                        autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="travelIndemnity">Indemnité de Grand Déplacement (€)</label>
-                    <input type="number" id="travelIndemnity" step="0.01" min="0" placeholder="Payée par la FFHG">
+                    <input type="number" id="travelIndemnity" step="0.01" min="0" placeholder="Payée par la FFHG"
+                        autocomplete="off">
                 </div>
                 <div class="form-group" id="travelPaymentToggle" style="display: none;">
                     <label>Payée par</label>
@@ -135,15 +136,16 @@
                 <h2>Relevé Bancaire</h2>
                 <div class="form-group">
                     <label for="iban">IBAN</label>
-                    <input type="text" id="iban" placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX" required>
+                    <input type="text" id="iban" placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX" autocomplete="off"
+                        required>
                 </div>
                 <div class="form-group">
                     <label for="bic">BIC</label>
-                    <input type="text" id="bic" placeholder="XXXXXXXX" required>
+                    <input type="text" id="bic" placeholder="XXXXXXXX" autocomplete="off" required>
                 </div>
                 <div class="form-group">
                     <label for="rib">RIB</label>
-                    <input type="text" id="rib" placeholder="Banque Guichet Compte Clé" required>
+                    <input type="text" id="rib" placeholder="Banque Guichet Compte Clé" autocomplete="off" required>
                 </div>
             </section>
 
@@ -153,11 +155,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="madeIn">Fait à</label>
-                        <input type="text" id="madeIn" placeholder="Ville" required>
+                        <input type="text" id="madeIn" placeholder="Ville" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="madeOn">Le</label>
-                        <input type="date" id="madeOn" required>
+                        <input type="date" id="madeOn" autocomplete="off" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -174,6 +176,15 @@
                 <button type="submit" class="btn btn-primary">Générer PDF</button>
             </div>
         </form>
+
+        <footer class="privacy-notice">
+            <p>🔒 <strong>Confidentialité garantie :</strong> Toutes vos données restent dans votre navigateur et ne
+                sont jamais envoyées vers un serveur. Cette application fonctionne entièrement hors ligne pour protéger
+                vos informations personnelles et bancaires.
+                <br><a href="https://github.com/Tchekda/hockey-ref-expense-report" target="_blank" rel="noopener">📖
+                    Code source ouvert disponible sur GitHub</a>
+            </p>
+        </footer>
     </div>
 
     <script src="js/storage.js"></script>

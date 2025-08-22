@@ -21,13 +21,15 @@ class ExpenseApp {
 
     // Load any saved persistent data
     loadInitialData() {
+        // Always clear temporary fields first
+        this.storage.clearTemporaryFields();
+
         if (this.storage.hasData()) {
             this.storage.loadPersistentData();
-            this.storage.autoPopulateFooter();
-        } else {
-            // First time user - just set up defaults
-            this.storage.autoPopulateFooter();
         }
+
+        // Set default values (today's date for match and footer)
+        this.storage.autoPopulateDefaults();
 
         // Initialize signature preview
         const signaturePreview = document.getElementById('signaturePreview');

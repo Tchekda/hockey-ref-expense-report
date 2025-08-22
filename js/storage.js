@@ -6,6 +6,11 @@ class DataStorage {
             'firstName', 'lastName', 'licenseNumber', 'address', 'email',
             'iban', 'bic', 'rib'
         ];
+        this.temporaryFields = [
+            'matchDate', 'matchTime', 'matchLocation', 'homeTeam', 'awayTeam',
+            'category', 'position', 'matchIndemnity', 'travelIndemnity',
+            'madeIn', 'madeOn'
+        ];
         this.signatureKey = 'refereeSignature';
     }
 
@@ -81,6 +86,51 @@ class DataStorage {
         // Set today's date if not already set
         if (madeOnField && !madeOnField.value) {
             madeOnField.value = new Date().toISOString().split('T')[0];
+        }
+    }
+
+    // Auto-populate default values
+    autoPopulateDefaults() {
+        const today = new Date().toISOString().split('T')[0];
+
+        // Set today's date for match date
+        const matchDateField = document.getElementById('matchDate');
+        if (matchDateField && !matchDateField.value) {
+            matchDateField.value = today;
+        }
+
+        // Set today's date for footer
+        const madeOnField = document.getElementById('madeOn');
+        if (madeOnField && !madeOnField.value) {
+            madeOnField.value = today;
+        }
+    }
+
+    // Clear temporary fields on page load
+    clearTemporaryFields() {
+        this.temporaryFields.forEach(fieldId => {
+            const element = document.getElementById(fieldId);
+            if (element) {
+                if (element.type === 'select-one') {
+                    element.selectedIndex = 0; // Reset to first option
+                } else {
+                    element.value = '';
+                }
+            }
+        });
+
+        // Clear radio buttons
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(radio => {
+            if (radio.name === 'travelPayment') {
+                radio.checked = radio.value === 'FFHG'; // Reset to default
+            }
+        });
+
+        // Hide travel payment toggle
+        const toggle = document.getElementById('travelPaymentToggle');
+        if (toggle) {
+            toggle.style.display = 'none';
         }
     }
 
