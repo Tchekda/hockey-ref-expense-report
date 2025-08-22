@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Note de Frais - Arbitres Hockey</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Note de Frais - Arbitre Hockey</h1>
+        </header>
+
+        <form id="expenseForm">
+            <!-- Match Section -->
+            <section class="form-section">
+                <h2>Match</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="matchDate">Date du match</label>
+                        <input type="date" id="matchDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="matchTime">Heure du match</label>
+                        <input type="time" id="matchTime" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="matchLocation">Lieu du match</label>
+                    <input type="text" id="matchLocation" placeholder="Patinoire..." required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="homeTeam">Équipe locale</label>
+                        <input type="text" id="homeTeam" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="awayTeam">Équipe visiteuse</label>
+                        <input type="text" id="awayTeam" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="category">Catégorie</label>
+                        <select id="category" required>
+                            <option value="">Sélectionner...</option>
+                            <option value="Synerglace Ligue Magnus">Synerglace Ligue Magnus</option>
+                            <option value="Division 1">Division 1</option>
+                            <option value="Division 2">Division 2</option>
+                            <option value="Division 3">Division 3</option>
+                            <option value="U20">U20</option>
+                            <option value="U18">U18</option>
+                            <option value="U15">U15</option>
+                            <option value="Feminine">Féminine</option>
+                            <option value="Para-hockey">Para-hockey</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Position</label>
+                        <select id="position" required>
+                            <option value="">Sélectionner...</option>
+                            <option value="Arbitre Principal">Arbitre Principal</option>
+                            <option value="Juge de Ligne">Juge de Ligne</option>
+                            <option value="Arbitre">Arbitre</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Referee Section -->
+            <section class="form-section">
+                <h2>Arbitre</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Prénom</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Nom</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="licenseNumber">Numéro de licence</label>
+                    <input type="text" id="licenseNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Adresse postale</label>
+                    <textarea id="address" rows="3" placeholder="Numéro, rue&#10;Code postal, Ville"
+                        required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+            </section>
+
+            <!-- Indemnity Section -->
+            <section class="form-section">
+                <h2>Indemnité</h2>
+                <div class="form-group">
+                    <label for="matchIndemnity">Indemnité de Match (€)</label>
+                    <input type="number" id="matchIndemnity" step="0.01" min="0" placeholder="Payée par le club"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="travelIndemnity">Indemnité de Grand Déplacement (€)</label>
+                    <input type="number" id="travelIndemnity" step="0.01" min="0" placeholder="Payée par la FFHG">
+                </div>
+                <div class="form-group" id="travelPaymentToggle" style="display: none;">
+                    <label>Payée par</label>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="travelPaidByFFHG">
+                                <input type="radio" id="travelPaidByFFHG" name="travelPayment" value="FFHG" checked>
+                                FFHG
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="travelPaidByClub">
+                                <input type="radio" id="travelPaidByClub" name="travelPayment" value="club">
+                                Club
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Banking Section -->
+            <section class="form-section">
+                <h2>Relevé Bancaire</h2>
+                <div class="form-group">
+                    <label for="iban">IBAN</label>
+                    <input type="text" id="iban" placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="bic">BIC</label>
+                    <input type="text" id="bic" placeholder="XXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="rib">RIB</label>
+                    <input type="text" id="rib" placeholder="Banque Guichet Compte Clé" required>
+                </div>
+            </section>
+
+            <!-- Footer Section -->
+            <section class="form-section">
+                <h2>Pied de page</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="madeIn">Fait à</label>
+                        <input type="text" id="madeIn" placeholder="Ville" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="madeOn">Le</label>
+                        <input type="date" id="madeOn" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signature">Signature</label>
+                    <input type="file" id="signature" accept="image/*" capture="environment">
+                    <div id="signaturePreview" class="signature-preview"></div>
+                    <button type="button" id="clearSignature" class="btn btn-secondary" style="display: none;">Effacer
+                        la signature</button>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <button type="button" id="saveData" class="btn btn-secondary">Sauvegarder les données</button>
+                <button type="submit" class="btn btn-primary">Générer PDF</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/pdf-generator.js"></script>
+    <script src="js/form-handler.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
