@@ -177,4 +177,58 @@ class DataStorage {
         // Remove from storage
         localStorage.removeItem(this.signatureKey);
     }
+
+    // Load data from query parameters
+    loadFromQueryParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const queryFields = [
+            // Match fields
+            'matchDate', 'matchTime', 'matchLocation', 'homeTeam', 'awayTeam', 'category', 'position',
+            // Indemnity fields
+            'matchIndemnity', 'travelIndemnity', 'travelPayment'
+        ];
+
+        let hasQueryData = false;
+
+        queryFields.forEach(fieldId => {
+            const value = urlParams.get(fieldId);
+            if (value) {
+                const element = document.getElementById(fieldId);
+                if (element) {
+                    if (element.type === 'select-one') {
+                        // For select elements, set the value if it exists as an option
+                        const option = Array.from(element.options).find(opt => opt.value === value);
+                        if (option) {
+                            element.value = value;
+                            hasQueryData = true;
+                        }
+                    } else if (fieldId === 'travelPayment') {
+                        // Handle radio buttons for travel payment
+                        const radioButton = document.querySelector(`input[name="travelPayment"][value="${value}"]`);
+                        if (radioButton) {
+                            radioButton.checked = true;
+                            hasQueryData = true;
+                        }
+                    } else {
+                        // For other input types
+                        element.value = value;
+                        hasQueryData = true;
+                    }
+                }
+            }
+        });
+
+        // If travel indemnity was set via query params, show the toggle
+        if (urlParams.get('travelIndemnity')) {
+            const travelIndemnityField = document.getElementById('travelIndemnity');
+            if (travelIndemnityField && parseFloat(travelIndemnityField.value) > 0) {
+                const toggle = document.getElementById('travelPaymentToggle');
+                if (toggle) {
+                    toggle.style.display = 'block';
+                }
+            }
+        }
+
+        return hasQueryData;
+    }
 }

@@ -75,6 +75,41 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 - **FFHG** : Remboursement par la Fédération (par défaut)
 - **Club** : Remboursement par le club receveur
 
+### 🔗 Pré-remplissage par URL (Paramètres de requête)
+
+L'application supporte le pré-remplissage des champs via des paramètres d'URL, pratique pour l'intégration avec d'autres systèmes ou sites de clubs.
+
+#### Paramètres supportés :
+
+**Informations du match :**
+
+- `matchDate` - Date du match (format : YYYY-MM-DD)
+- `matchTime` - Heure du match (format : HH:MM)
+- `matchLocation` - Lieu du match (texte libre)
+- `homeTeam` - Équipe locale (texte libre)
+- `awayTeam` - Équipe visiteuse (texte libre)
+- `category` - Catégorie (doit correspondre exactement aux options disponibles)
+- `position` - Position (doit correspondre exactement aux options disponibles)
+
+**Indemnités :**
+
+- `matchIndemnity` - Montant de l'indemnité de match (en euros)
+- `travelIndemnity` - Montant de l'indemnité de grand déplacement (en euros)
+- `travelPayment` - Payeur du grand déplacement ("FFHG" ou "club")
+
+#### Exemple d'URL :
+
+```
+https://votre-site.com/?matchDate=2025-08-24&matchTime=20:30&homeTeam=Dragons&awayTeam=Lions&category=Division%201&position=Arbitre%20Principal&matchIndemnity=45&travelIndemnity=25&travelPayment=FFHG
+```
+
+#### Notes importantes :
+
+- Les paramètres d'URL ont la **priorité** sur les valeurs par défaut
+- Les **données personnelles** et bancaires sont toujours chargées depuis le stockage local
+- Les valeurs de `category` et `position` doivent **correspondre exactement** aux options du formulaire
+- Si `travelIndemnity` > 0, le toggle de choix du payeur s'affiche automatiquement
+
 ## 🛠️ Aspect Technique
 
 ### Technologies Utilisées

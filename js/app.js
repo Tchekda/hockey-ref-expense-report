@@ -24,21 +24,30 @@ class ExpenseApp {
         // Always clear temporary fields first
         this.storage.clearTemporaryFields();
 
+        // Load data from query parameters (takes priority)
+        const hasQueryData = this.storage.loadFromQueryParams();
+
         if (this.storage.hasData()) {
             this.storage.loadPersistentData();
         }
 
-        // Set default values (today's date for match and footer)
-        this.storage.autoPopulateDefaults();
+        // Set default values only if no query data was loaded
+        if (!hasQueryData) {
+            this.storage.autoPopulateDefaults();
+        } else {
+            // Still set today's date for footer if not provided in query
+            const madeOnField = document.getElementById('madeOn');
+            if (madeOnField && !madeOnField.value) {
+                madeOnField.value = new Date().toISOString().split('T')[0];
+            }
+        }
 
         // Initialize signature preview
         const signaturePreview = document.getElementById('signaturePreview');
         if (signaturePreview && !signaturePreview.querySelector('img')) {
             signaturePreview.classList.add('empty');
         }
-    }
-
-    // Setup keyboard shortcuts
+    }    // Setup keyboard shortcuts
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (e) => {
             // Ctrl+S to save data

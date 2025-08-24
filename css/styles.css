@@ -345,3 +345,14 @@ textarea:valid {
 .privacy-notice a:hover {
   text-decoration: underline;
 }
+
+.privacy-notice a[href^="mailto:"] {
+  color: #0066cc;
+  font-weight: normal;
+}
+
+.privacy-notice .contact-info {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #666;
+}
