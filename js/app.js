@@ -50,10 +50,10 @@ class ExpenseApp {
     }    // Setup keyboard shortcuts
     setupKeyboardShortcuts() {
         document.addEventListener('keydown', (e) => {
-            // Ctrl+S to save data
-            if (e.ctrlKey && e.key === 's') {
+            // Ctrl+Shift+D to clear data (more secure combination for destructive action)
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
                 e.preventDefault();
-                this.formHandler.saveData();
+                this.formHandler.clearData();
             }
 
             // Ctrl+Enter to generate PDF

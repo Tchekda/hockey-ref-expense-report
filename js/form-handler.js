@@ -20,10 +20,10 @@ class FormHandler {
             this.handleFormSubmission();
         });
 
-        // Save data button
-        const saveButton = document.getElementById('saveData');
-        saveButton.addEventListener('click', () => {
-            this.saveData();
+        // Clear data button
+        const clearButton = document.getElementById('clearData');
+        clearButton.addEventListener('click', () => {
+            this.clearData();
         });
 
         // Signature file input
@@ -119,14 +119,28 @@ class FormHandler {
         }
     }
 
-    // Save persistent data
-    saveData() {
-        const success = this.storage.savePersistentData();
-
-        if (success) {
-            this.showMessage('Données sauvegardées avec succès !', 'success');
-        } else {
-            this.showMessage('Erreur lors de la sauvegarde.', 'error');
+    // Clear persistent data
+    clearData() {
+        // Show confirmation dialog
+        if (confirm('Êtes-vous sûr de vouloir supprimer toutes les données enregistrées (informations personnelles, bancaires et signature) ? Cette action est irréversible.')) {
+            const success = this.storage.clearSavedData();
+            
+            if (success) {
+                // Clear the form fields
+                this.storage.persistentFields.forEach(fieldId => {
+                    const element = document.getElementById(fieldId);
+                    if (element) {
+                        element.value = '';
+                    }
+                });
+                
+                // Clear signature
+                this.storage.clearSignature();
+                
+                this.showMessage('Toutes les données enregistrées ont été supprimées avec succès !', 'success');
+            } else {
+                this.showMessage('Erreur lors de la suppression des données.', 'error');
+            }
         }
     }
 
