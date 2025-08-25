@@ -225,7 +225,7 @@ class PDFGenerator {
             this.currentY += 6;
 
             // Use the payment method from form data, default to FFHG
-            const paymentMethod = data.travelPayment === 'club' ? 'payée par le club' : 'payée par la FFHG';
+            const paymentMethod = data.travelPayment === 'Club' ? 'payée par le club' : 'payée par la FFHG';
             this.doc.setFontSize(8);
             this.doc.setFont(undefined, 'italic');
             this.doc.text(`(${paymentMethod})`, this.indemnityValueX, this.currentY);

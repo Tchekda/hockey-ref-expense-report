@@ -95,7 +95,7 @@ L'application supporte le pré-remplissage des champs via des paramètres d'URL,
 
 - `matchIndemnity` - Montant de l'indemnité de match (en euros)
 - `travelIndemnity` - Montant de l'indemnité de grand déplacement (en euros)
-- `travelPayment` - Payeur du grand déplacement ("FFHG" ou "club")
+- `travelPayment` - Payeur du grand déplacement ("FFHG" ou "Club")
 
 #### Exemple d'URL :
 

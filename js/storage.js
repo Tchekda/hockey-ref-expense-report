@@ -124,11 +124,12 @@ class DataStorage {
         radioButtons.forEach(radio => {
             if (radio.name === 'travelPayment') {
                 radio.checked = radio.value === 'FFHG'; // Reset to default
+                console.log("Resetting travelPayment to 'FFHG'");
             }
         });
 
         // Hide travel payment toggle
-        const toggle = document.getElementById('travelPaymentToggle');
+        const toggle = document.getElementById('travelPayment');
         if (toggle) {
             toggle.style.display = 'none';
         }
@@ -205,6 +206,7 @@ class DataStorage {
                     } else if (fieldId === 'travelPayment') {
                         // Handle radio buttons for travel payment
                         const radioButton = document.querySelector(`input[name="travelPayment"][value="${value}"]`);
+                        console.log("Setting travelPayment to", value, urlParams, radioButton);
                         if (radioButton) {
                             radioButton.checked = true;
                             hasQueryData = true;
@@ -222,7 +224,7 @@ class DataStorage {
         if (urlParams.get('travelIndemnity')) {
             const travelIndemnityField = document.getElementById('travelIndemnity');
             if (travelIndemnityField && parseFloat(travelIndemnityField.value) > 0) {
-                const toggle = document.getElementById('travelPaymentToggle');
+                const toggle = document.getElementById('travelPayment');
                 if (toggle) {
                     toggle.style.display = 'block';
                 }

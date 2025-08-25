@@ -246,7 +246,7 @@ class FormHandler {
 
     // Toggle travel payment options based on travel indemnity value
     toggleTravelPaymentOptions(input) {
-        const toggle = document.getElementById('travelPaymentToggle');
+        const toggle = document.getElementById('travelPayment');
         const value = parseFloat(input.value) || 0;
 
         if (value > 0) {
