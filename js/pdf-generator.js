@@ -14,11 +14,14 @@ class PDFGenerator {
     }
 
     // Generate PDF from form data
-    generatePDF(formData) {
+    async generatePDF(formData) {
         try {
             // Initialize jsPDF
             this.doc = new jspdf.jsPDF();
             this.currentY = this.margin;
+
+            // Pre-load the logo image
+            this.logoBase64 = await this.loadImageAsBase64('img/arbitre.png').catch(() => null);
 
             // Calculate alignment positions once for consistency
             this.calculateAlignmentPositions();
@@ -80,6 +83,9 @@ class PDFGenerator {
 
     // Add header
     addHeader() {
+        // Add logos on both sides
+        this.addLogos();
+
         this.doc.setFontSize(20);
         this.doc.setFont(undefined, 'bold');
         this.doc.text('NOTE DE FRAIS - ARBITRE HOCKEY', this.pageWidth / 2, this.currentY, { align: 'center' });
@@ -87,6 +93,82 @@ class PDFGenerator {
         this.currentY += 15;
         this.addLine();
         this.currentY += 10;
+    }
+
+    // Add logos to PDF header
+    addLogos() {
+        try {
+            const logoSize = 15; // Size in mm
+            const logoY = this.currentY - 5; // Align with text
+
+            // Left logo
+            const leftLogoX = this.margin;
+
+            // Right logo  
+            const rightLogoX = this.pageWidth - this.margin - logoSize;
+
+            if (this.logoBase64) {
+                // Add actual logo images
+                this.doc.addImage(this.logoBase64, 'PNG', leftLogoX, logoY, logoSize, logoSize);
+                this.doc.addImage(this.logoBase64, 'PNG', rightLogoX, logoY, logoSize, logoSize);
+            } else {
+                // Fallback to placeholders
+                this.addLogoPlaceholders();
+            }
+        } catch (error) {
+            console.error('Error adding logos to PDF:', error);
+            this.addLogoPlaceholders();
+        }
+    }
+
+    // Add placeholder rectangles if image loading fails
+    addLogoPlaceholders() {
+        const logoSize = 15;
+        const logoY = this.currentY - 5;
+
+        const leftLogoX = this.margin;
+        const rightLogoX = this.pageWidth - this.margin - logoSize;
+
+        this.doc.setDrawColor(0, 102, 204);
+        this.doc.setLineWidth(1);
+        this.doc.rect(leftLogoX, logoY, logoSize, logoSize);
+        this.doc.rect(rightLogoX, logoY, logoSize, logoSize);
+
+        this.doc.setFontSize(8);
+        this.doc.setFont(undefined, 'normal');
+        this.doc.text('LOGO', leftLogoX + logoSize / 2, logoY + logoSize / 2 + 1, { align: 'center' });
+        this.doc.text('LOGO', rightLogoX + logoSize / 2, logoY + logoSize / 2 + 1, { align: 'center' });
+    }
+
+    // Load image and convert to base64
+    loadImageAsBase64(imagePath) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+
+            img.onload = function () {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                canvas.width = img.width;
+                canvas.height = img.height;
+
+                ctx.drawImage(img, 0, 0);
+
+                try {
+                    const base64 = canvas.toDataURL('image/png');
+                    resolve(base64);
+                } catch (error) {
+                    reject(error);
+                }
+            };
+
+            img.onerror = function () {
+                reject(new Error('Failed to load image'));
+            };
+
+            img.src = imagePath;
+        });
     }
 
     // Add horizontal line

@@ -102,7 +102,7 @@ class FormHandler {
 
         try {
             const formData = this.collectFormData();
-            const success = this.pdfGenerator.generatePDF(formData);
+            const success = await this.pdfGenerator.generatePDF(formData);
 
             if (success) {
                 this.showMessage('PDF généré avec succès !', 'success');
@@ -124,7 +124,7 @@ class FormHandler {
         // Show confirmation dialog
         if (confirm('Êtes-vous sûr de vouloir supprimer toutes les données enregistrées (informations personnelles, bancaires et signature) ? Cette action est irréversible.')) {
             const success = this.storage.clearSavedData();
-            
+
             if (success) {
                 // Clear the form fields
                 this.storage.persistentFields.forEach(fieldId => {
@@ -133,10 +133,10 @@ class FormHandler {
                         element.value = '';
                     }
                 });
-                
+
                 // Clear signature
                 this.storage.clearSignature();
-                
+
                 this.showMessage('Toutes les données enregistrées ont été supprimées avec succès !', 'success');
             } else {
                 this.showMessage('Erreur lors de la suppression des données.', 'error');
