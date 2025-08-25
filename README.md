@@ -83,24 +83,31 @@ L'application supporte le pré-remplissage des champs via des paramètres d'URL,
 
 **Informations du match :**
 
-- `matchDate` - Date du match (format : YYYY-MM-DD)
-- `matchTime` - Heure du match (format : HH:MM)
-- `matchLocation` - Lieu du match (texte libre)
-- `homeTeam` - Équipe locale (texte libre)
-- `awayTeam` - Équipe visiteuse (texte libre)
-- `category` - Catégorie (doit correspondre exactement aux options disponibles)
-- `position` - Position (doit correspondre exactement aux options disponibles)
+| Nom complet       | Alias | Description                          |
+|-------------------|-------|--------------------------------------|
+| `matchDate`       | `a`   | Date du match (format : YYYY-MM-DD) |
+| `matchTime`       | `b`   | Heure du match (format : HH:MM)     |
+| `matchLocation`   | `c`   | Lieu du match (texte libre)         |
+| `homeTeam`        | `d`   | Équipe locale (texte libre)         |
+| `awayTeam`        | `e`   | Équipe visiteuse (texte libre)      |
+| `category`        | `f`   | Catégorie (doit correspondre exactement aux options disponibles) |
+| `position`        | `g`   | Position (doit correspondre exactement aux options disponibles) |
 
 **Indemnités :**
 
-- `matchIndemnity` - Montant de l'indemnité de match (en euros)
-- `travelIndemnity` - Montant de l'indemnité de grand déplacement (en euros)
-- `travelPayment` - Payeur du grand déplacement ("FFHG" ou "Club")
+| Nom complet         | Alias | Description                                      |
+|---------------------|-------|--------------------------------------------------|
+| `matchIndemnity`    | `h`   | Montant de l'indemnité de match (en euros)       |
+| `travelIndemnity`   | `i`   | Montant de l'indemnité de grand déplacement (en euros) |
+| `travelPayment`     | `j`   | Payeur du grand déplacement ("FFHG" ou "Club")   |
+
+#### Exemple d'URL :
+
 
 #### Exemple d'URL :
 
 ```
-https://votre-site.com/?matchDate=2025-08-24&matchTime=20:30&homeTeam=Dragons&awayTeam=Lions&category=Division%201&position=Arbitre%20Principal&matchIndemnity=45&travelIndemnity=25&travelPayment=FFHG
+https://www.tchekda.fr/hockey-ref-expense-report/?matchDate=2025-08-24&matchTime=20:30&matchLocation=Rouen&homeTeam=Dragons&awayTeam=Lions&category=Division%201&position=Arbitre%20Principal&matchIndemnity=45&travelIndemnity=25&travelPayment=FFHG
 ```
 
 #### Notes importantes :

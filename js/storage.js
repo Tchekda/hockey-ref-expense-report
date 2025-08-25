@@ -182,17 +182,18 @@ class DataStorage {
     // Load data from query parameters
     loadFromQueryParams() {
         const urlParams = new URLSearchParams(window.location.search);
-        const queryFields = [
+        const queryFields = {
             // Match fields
-            'matchDate', 'matchTime', 'matchLocation', 'homeTeam', 'awayTeam', 'category', 'position',
+            'matchDate': 'a', 'matchTime': 'b', 'matchLocation': 'c', 'homeTeam': 'd', 'awayTeam': 'e',
+            'category': 'f', 'position': 'g',
             // Indemnity fields
-            'matchIndemnity', 'travelIndemnity', 'travelPayment'
-        ];
+            'matchIndemnity': 'h', 'travelIndemnity': 'i', 'travelPayment': 'j'
+        };
 
         let hasQueryData = false;
 
-        queryFields.forEach(fieldId => {
-            const value = urlParams.get(fieldId);
+        Object.entries(queryFields).forEach(([fieldId, alias]) => {
+            const value = urlParams.get(fieldId) || urlParams.get(alias); // Check both full name and alias
             if (value) {
                 const element = document.getElementById(fieldId);
                 if (element) {
@@ -221,7 +222,7 @@ class DataStorage {
         });
 
         // If travel indemnity was set via query params, show the toggle
-        if (urlParams.get('travelIndemnity')) {
+        if (urlParams.get('travelIndemnity') || urlParams.get('i')) {
             const travelIndemnityField = document.getElementById('travelIndemnity');
             if (travelIndemnityField && parseFloat(travelIndemnityField.value) > 0) {
                 const toggle = document.getElementById('travelPayment');
