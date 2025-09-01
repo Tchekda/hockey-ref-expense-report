@@ -1,0 +1,30 @@
+{
+    "name": "Note de Frais - Arbitre Hockey",
+    "short_name": "NdF Arbitre",
+    "description": "Générateur de notes de frais pour arbitres de hockey sur glace français",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#1e40af",
+    "scope": "./",
+    "icons": [
+        {
+            "src": "./img/arbitre.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./img/arbitre.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "./img/arbitre.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

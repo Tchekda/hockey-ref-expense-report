@@ -5,6 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Générateur de Note de Frais - Arbitres Hockey</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1e40af">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="NdF Arbitre">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="img/arbitre.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/arbitre.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/arbitre.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/arbitre.png">
+
+    <!-- Standard Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="img/arbitre.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/arbitre.png">
+
+    <!-- Windows Tiles -->
+    <meta name="msapplication-TileImage" content="img/arbitre.png">
+    <meta name="msapplication-TileColor" content="#1e40af">
+
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -61,6 +86,12 @@
                             <option value="U15">U15</option>
                             <option value="Feminine">Féminine</option>
                             <option value="Para-hockey">Para-hockey</option>
+                            <option value="Amicaux">Amicaux</option>
+                            <option value="Équipe de France">Équipe de France</option>
+                            <option value="Internationaux">Internationaux</option>
+                            <option value="CHL">CHL</option>
+                            <option value="ContiCup">ContiCup</option>
+                            <option value="Autres">Autres</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -75,33 +106,6 @@
                 </div>
             </section>
 
-            <!-- Referee Section -->
-            <section class="form-section">
-                <h2>Arbitre</h2>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">Prénom</label>
-                        <input type="text" id="firstName" autocomplete="given-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Nom</label>
-                        <input type="text" id="lastName" autocomplete="family-name" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="licenseNumber">Numéro de licence</label>
-                    <input type="text" id="licenseNumber" autocomplete="off" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">Adresse postale</label>
-                    <textarea id="address" rows="3" placeholder="Numéro, rue&#10;Code postal, Ville"
-                        autocomplete="street-address" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" autocomplete="email" required>
-                </div>
-            </section>
 
             <!-- Indemnity Section -->
             <section class="form-section">
@@ -132,6 +136,34 @@
                             </label>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Referee Section -->
+            <section class="form-section">
+                <h2>Arbitre</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Prénom</label>
+                        <input type="text" id="firstName" autocomplete="given-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Nom</label>
+                        <input type="text" id="lastName" autocomplete="family-name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="licenseNumber">Numéro de licence</label>
+                    <input type="text" id="licenseNumber" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Adresse postale</label>
+                    <textarea id="address" rows="3" placeholder="Numéro, rue&#10;Code postal, Ville"
+                        autocomplete="street-address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" autocomplete="email" required>
                 </div>
             </section>
 
@@ -168,7 +200,7 @@
                 </div>
                 <div class="form-group">
                     <label for="signature">Signature</label>
-                    <input type="file" id="signature" accept="image/*" capture="environment">
+                    <input type="file" id="signature" accept="image/*">
                     <div id="signaturePreview" class="signature-preview"></div>
                     <button type="button" id="clearSignature" class="btn btn-secondary" style="display: none;">Effacer
                         la signature</button>
@@ -189,9 +221,18 @@
                 <br><a href="https://github.com/Tchekda/hockey-ref-expense-report" target="_blank" rel="noopener">📖
                     Code source ouvert disponible sur GitHub</a>
             </p>
-            <p>📊 <strong>Suivi de saison :</strong> Téléchargez le fichier Excel pour suivre vos matchs, gérer vos
-                paiements et pré-remplir ce formulaire avec les détails des rencontres.
-                <a href="./Suivi NdF Arbitre.xlsx" download="Suivi_NdF_Arbitre.xlsx">📥 Télécharger le fichier Excel</a>
+            <p>📊 <strong>Intégration Excel/Google Sheets :</strong> Si vous souhaitez pré-remplir le formulaire à
+                partir de données présentes dans votre Excel ou Google Sheet, copiez la formule depuis
+                <a href="./Suivi NdF Arbitre.xlsx" download="Suivi_NdF_Arbitre.xlsx">📥 ce fichier Excel</a> ou
+                <a href="https://docs.google.com/spreadsheets/d/1IbAkeTUT2EBFpcrjKilK9pBJQV0h2K28kf39XQry8Fs/edit?usp=sharing"
+                    target="_blank">📥 ce Google Sheet</a>
+            </p>
+            <p>📱 <strong>Installation mobile :</strong> Installez cette app sur votre téléphone !
+                <span id="pwa-instructions">
+                    Sur <strong>Android</strong> : Appuyez sur le bouton "Installer" qui apparaît.
+                    Sur <strong>iPhone</strong> : Appuyez sur <span style="font-family: monospace;">⎙</span> (Partager)
+                    puis "Sur l'écran d'accueil".
+                </span>
             </p>
             <p class="contact-info">
                 💻 Développé par <strong>David Tchekachev</strong> •
