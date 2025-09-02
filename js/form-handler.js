@@ -235,17 +235,30 @@ class FormHandler {
         const existingMessages = document.querySelectorAll('.message');
         existingMessages.forEach(msg => msg.remove());
 
-        // Create new message
-        const message = document.createElement('div');
-        message.className = `message ${type}`;
-        message.textContent = text;
+        // Create message at top of form
+        const topMessage = document.createElement('div');
+        topMessage.className = `message ${type}`;
+        topMessage.textContent = text;
 
         // Insert at top of form
-        this.form.insertBefore(message, this.form.firstChild);
+        this.form.insertBefore(topMessage, this.form.firstChild);
 
-        // Auto-remove after 5 seconds
+        // Create message near the button at bottom
+        const bottomMessage = document.createElement('div');
+        bottomMessage.className = `message ${type}`;
+        bottomMessage.textContent = text;
+        bottomMessage.style.marginTop = '10px';
+
+        // Insert after form actions (buttons)
+        const formActions = document.querySelector('.form-actions');
+        if (formActions) {
+            formActions.parentNode.insertBefore(bottomMessage, formActions.nextSibling);
+        }
+
+        // Auto-remove both messages after 5 seconds
         setTimeout(() => {
-            message.remove();
+            topMessage.remove();
+            bottomMessage.remove();
         }, 5000);
     }
 
