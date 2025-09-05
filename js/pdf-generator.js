@@ -395,10 +395,12 @@ class PDFGenerator {
 
     // Generate filename for PDF
     generateFileName(data) {
-        const today = new Date();
-        const dateStr = today.toISOString().split('T')[0];
-        const lastName = data.lastName ? data.lastName.replace(/[^a-zA-Z0-9]/g, '') : 'Arbitre';
+        const gameDate = data.matchDate ? new Date(data.matchDate).toISOString().split('T')[0] : '';
+        const division = data.category ? data.category.replace(/[^a-zA-Z0-9-]/g, '') : '';
+        const homeTeam = data.homeTeam ? data.homeTeam.replace(/[^a-zA-Z0-9-]/g, '') : '';
+        const awayTeam = data.awayTeam ? data.awayTeam.replace(/[^a-zA-Z0-9-]/g, '') : '';
+        const refereeName = `${data.lastName || 'Arbitre'}_${data.firstName || ''}`.trim().replace(/[^a-zA-Z0-9_-]/g, '');
 
-        return `NoteDeFrais_${dateStr}_${lastName}.pdf`;
+        return `NoteDeFrais_${gameDate}_${division}_${homeTeam}_vs_${awayTeam}_${refereeName}.pdf`;
     }
 }
