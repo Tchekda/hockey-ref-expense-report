@@ -51,6 +51,18 @@ class FormHandler {
             this.validateEmail(e.target);
         });
 
+        // Auto-populate indemnity based on category and role
+        const categoryField = document.getElementById('category');
+        const positionField = document.getElementById('position');
+        
+        categoryField.addEventListener('change', () => {
+            this.updateIndemnity();
+        });
+        
+        positionField.addEventListener('change', () => {
+            this.updateIndemnity();
+        });
+
         // Show/hide travel payment toggle based on travel indemnity value
         const travelIndemnityField = document.getElementById('travelIndemnity');
         travelIndemnityField.addEventListener('input', (e) => {
@@ -417,6 +429,64 @@ class FormHandler {
         if (success) {
             this.storage.autoPopulateFooter();
             this.showMessage('Données chargées avec succès !', 'success');
+        }
+    }
+
+    // Update indemnity based on category and position
+    updateIndemnity() {
+        const categoryField = document.getElementById('category');
+        const positionField = document.getElementById('position');
+        const indemnityField = document.getElementById('matchIndemnity');
+
+        const category = categoryField.value;
+        const position = positionField.value;
+
+        // Indemnity matrix
+        const indemnityMatrix = {
+            'Synerglace Ligue Magnus': {
+                'Arbitre Principal': 575,
+                'Juge de Ligne': 450
+            },
+            'Division 1': {
+                'Arbitre Principal': 425,
+                'Juge de Ligne': 300
+            },
+            'Division 2': {
+                'Arbitre Principal': 350,
+                'Juge de Ligne': 250
+            },
+            'Division 3': {
+                'Arbitre Principal': 295,
+                'Juge de Ligne': 210,
+                'Arbitre': 250
+            },
+            'U18': {
+                'Arbitre Principal': 200,
+                'Juge de Ligne': 140,
+                'Arbitre': 110
+            },
+            'U20': {
+                'Arbitre Principal': 200,
+                'Juge de Ligne': 140,
+                'Arbitre': 110
+            },
+            'Féminine': {
+                'Arbitre Principal': 200,
+                'Juge de Ligne': 140,
+                'Arbitre': 110
+            }
+        };
+
+        // Check if we have both category and position selected
+        if (category && position && indemnityMatrix[category] && indemnityMatrix[category][position]) {
+            const amount = indemnityMatrix[category][position];
+            indemnityField.value = amount;
+            
+            // Add visual feedback
+            indemnityField.style.backgroundColor = '#e8f5e8';
+            setTimeout(() => {
+                indemnityField.style.backgroundColor = '';
+            }, 2000);
         }
     }
 }
