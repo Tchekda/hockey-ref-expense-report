@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Équipes et Contacts - Note de Frais Arbitre</title>
+    <meta name="description" content="Liste des équipes de hockey et leurs adresses de contact pour les arbitres">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1e40af">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="NdF Arbitre">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="img/arbitre.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/arbitre.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/arbitre.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/arbitre.png">
+
+    <!-- Standard Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="img/arbitre.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/arbitre.png">
+
+    <!-- Windows Tiles -->
+    <meta name="msapplication-TileImage" content="img/arbitre.png">
+    <meta name="msapplication-TileColor" content="#1e40af">
+
+    <link rel="stylesheet" href="css/teams.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="img/arbitre.png" alt="Logo Arbitre" class="header-logo">
+                <h1>🏒 Équipes et Contacts</h1>
+                <img src="img/arbitre.png" alt="Logo Arbitre" class="header-logo header-logo-right">
+            </div>
+        </header>
+
+        <a href="index.html" class="back-link">
+            ← Retour à la note de frais
+        </a>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Rechercher une équipe..." autocomplete="off">
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <span class="stat-number" id="totalTeams">-</span>
+                <span class="stat-label">Équipes</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="totalEmails">-</span>
+                <span class="stat-label">Contacts</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="visibleTeams">-</span>
+                <span class="stat-label">Affichées</span>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="teamsTable">
+                <thead>
+                    <tr>
+                        <th>Équipe</th>
+                        <th>Contacts</th>
+                    </tr>
+                </thead>
+                <tbody id="teamsTableBody">
+                    <!-- Teams will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            <p>🔍 Aucune équipe trouvée pour votre recherche.</p>
+            <p><small>Essayez avec un autre terme de recherche.</small></p>
+        </div>
+
+        <footer class="privacy-notice">
+            <p>📧 <strong>Contacts équipes :</strong> Cette liste contient les adresses de contact officielles des
+                équipes de hockey pour faciliter la communication avec les arbitres.</p>
+            <p class="contact-info">
+                💻 Développé par <strong>David Tchekachev</strong> •
+                📧 Questions/Support : <a href="mailto:contact@tchekda.fr">contact@tchekda.fr</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="js/teams.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

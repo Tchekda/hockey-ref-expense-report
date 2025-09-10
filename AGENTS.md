@@ -1,14 +1,39 @@
-# AGENTS.md - AI Code Assistant Documentation
+# AGENTS.md - AI Code Assistant Documentatio```
 
-> ⚠️ **Important**: This file must be kept updated when significant changes are made to the codebase, architecture, or functionality.
+├── index.html # PWA-enabled form interface with manifest links
+├── teams.html # Searchable team directory with contact information
+├── manifest.json # PWA manifest for mobile installation
+├── sw.js # Service Worker for offline functionality
+├── css/
+│ ├── styles.css # Responsive styling with mobile/desktop header variants
+│ └── teams.css # Dedicated styling for teams directory page
+├── js/
+│ ├── app.js # PWA initialization and native installation handling
+│ ├── form-handler.js # Form validation, team email display, dual messages
+│ ├── pdf-generator.js # PDF creation with signature image processing
+│ ├── hockey-data.js # Team data management, autocomplete, email lookups
+│ ├── teams.js # Teams directory functionality with search and filtering
+│ └── storage.js # Multi-layer storage system with iOS Safari fallbacks
+├── data/
+│ └── hockey-teams.json # French hockey teams database with contact emails
+├── img/
+│ └── arbitre.png # PWA icon and application logo
+├── README.md # User documentation (updated with teams functionality)
+├── AGENTS.md # This file - AI assistant technical documentation
+├── LICENCE.md # MIT license
+└── Suivi NdF Arbitre.xlsx # Excel tracking file for report management
+
+```t**: This file must be kept updated when significant changes are made to the codebase, architecture, or functionality.
 
 ## Project Overview
 
-**Hockey Referee Expense Report Generator** - A Progressive Web App (PWA) for French ice hockey referees to create professional PDF expense reports. Built with vanilla HTML/CSS/JavaScript with PWA capabilities, focusing on privacy, offline functionality, cross-platform compatibility, and native mobile experience.
+**Hockey Referee Expense Report Generator** - A Progressive Web App (PWA) for French ice hockey referees to create professional PDF expense reports with integrated team directory. Built with vanilla HTML/CSS/JavaScript with PWA capabilities, focusing on privacy, offline functionality, cross-platform compatibility, and native mobile experience.
 
 ### Core Purpose
 
 - Generate official expense report PDFs for FFHG (Fédération Française de Hockey sur Glace) compliance
+- Provide searchable directory of French hockey teams with official contact information
+- Smart team autocomplete with contextual email display during form filling
 - 100% client-side processing - no server communication
 - Progressive Web App with offline functionality and mobile installation
 - Cross-platform data persistence with iOS Safari fallbacks
@@ -41,23 +66,25 @@
 ## Project Structure
 
 ```
-├── index.html              # PWA-enabled form interface with manifest links
-├── manifest.json           # PWA manifest for mobile installation
-├── sw.js                   # Service Worker for offline functionality
+
+├── index.html # PWA-enabled form interface with manifest links
+├── manifest.json # PWA manifest for mobile installation
+├── sw.js # Service Worker for offline functionality
 ├── css/
-│   └── styles.css          # Responsive styling with mobile/desktop header variants
+│ └── styles.css # Responsive styling with mobile/desktop header variants
 ├── js/
-│   ├── app.js              # PWA initialization and native installation handling
-│   ├── form-handler.js     # Form validation, dual message display
-│   ├── pdf-generator.js    # PDF creation with signature image processing
-│   └── storage.js          # Multi-layer storage system with iOS Safari fallbacks
+│ ├── app.js # PWA initialization and native installation handling
+│ ├── form-handler.js # Form validation, dual message display
+│ ├── pdf-generator.js # PDF creation with signature image processing
+│ └── storage.js # Multi-layer storage system with iOS Safari fallbacks
 ├── img/
-│   └── arbitre.png         # PWA icon and application logo
-├── README.md              # User documentation (updated with PWA features)
-├── AGENTS.md              # This file - AI assistant technical documentation
-├── LICENCE.md             # MIT license
+│ └── arbitre.png # PWA icon and application logo
+├── README.md # User documentation (updated with PWA features)
+├── AGENTS.md # This file - AI assistant technical documentation
+├── LICENCE.md # MIT license
 └── Suivi NdF Arbitre.xlsx # Excel tracking file for report management
-```
+
+````
 
 ## Core Functionality
 
@@ -69,6 +96,8 @@
 - **File Processing**: Multi-format signature handling (JPG, PNG) with conversion
 - **Dual Messages**: Enhanced user feedback with both generating and completion messages
 - **Event Handling**: Input formatting (IBAN), auto-population, mobile optimizations
+- **Team Integration**: Automatic email display for known teams during form input
+- **Hockey Data Integration**: Connects with HockeyData class for team lookups
 
 **Key Methods**:
 
@@ -77,6 +106,8 @@
 - `handleSignatureUpload()`: Multi-format processing
 - `toggleTravelPaymentOptions()`: Smart payment method selection UI
 - `updateDefaultLocation()`: Auto-population with location intelligence
+- `displayTeamEmails()`: Show team contacts when home team is selected
+- `bindHockeyDataEvents()`: Integration with team data system
 
 ### 2. PDF Generation (`pdf-generator.js`)
 
@@ -113,6 +144,72 @@
 - **Persistent Data**: Personal info, banking details, signature (cross-session)
 - **Temporary Data**: Match info, indemnities (session-only)
 - **Query Parameters**: Advanced URL pre-filling with single-letter aliases for Excel integration
+
+### 4. Hockey Data Management (`hockey-data.js`)
+
+**Class**: `HockeyData`
+
+- **Team Database**: French hockey teams with official contact information
+- **Autocomplete System**: HTML5 datalist population for team selection
+- **Email Lookups**: Retrieve contact information for known teams
+- **Data Loading**: Asynchronous JSON data fetching and processing
+- **Global Access**: Window-attached instance for cross-component communication
+
+**Key Methods**:
+
+- `loadData()`: Load and process hockey-teams.json database
+- `populateDatalist()`: Create HTML5 datalist options for autocomplete
+- `getTeamEmails(teamName)`: Retrieve contact emails for specific team
+- `teamExists(teamName)`: Validate team presence in database
+- `setupAutocomplete()`: Initialize team selection autocomplete
+
+**Data Structure**:
+```javascript
+{
+  "teams": [
+    {
+      "name": "Team Name",
+      "emails": [
+        {
+          "email": "contact@team.com",
+          "label": "Contact Description"
+        }
+      ]
+    }
+  ]
+}
+````
+
+### 5. Teams Directory (`teams.js`)
+
+**Class**: `TeamsDirectory`
+
+- **Search Functionality**: Real-time filtering by team name or email
+- **Statistics Display**: Dynamic counts of teams, contacts, and visible results
+- **Table Rendering**: Responsive team and contact information display
+- **Performance Optimization**: Debounced search with efficient filtering
+
+**Key Features**:
+
+- `performSearch(query)`: Multi-field search across team names and email data
+- `renderTable()`: Dynamic HTML table generation with contact information
+- `updateStats()`: Real-time statistics calculation and display
+- `escapeHtml()`: Security-focused HTML content sanitization
+
+**Search Algorithm**:
+
+```javascript
+// Searches team names and email addresses/labels
+const filteredTeams = teams.filter((team) => {
+  const nameMatch = team.name.toLowerCase().includes(searchTerm);
+  const emailMatch = team.emails.some(
+    (emailObj) =>
+      emailObj.email.toLowerCase().includes(searchTerm) ||
+      emailObj.label.toLowerCase().includes(searchTerm)
+  );
+  return nameMatch || emailMatch;
+});
+```
 
 **Storage Architecture**:
 
@@ -181,7 +278,7 @@ showStorageWarnings() {
 }
 ```
 
-### 4. PWA Management (`app.js`)
+### 6. PWA Management (`app.js`)
 
 **Purpose**: Progressive Web App initialization and native installation handling
 
@@ -199,15 +296,23 @@ showStorageWarnings() {
 // Removed custom beforeinstallprompt handling for better reliability
 ```
 
-### 5. Service Worker (`sw.js`)
+### 7. Service Worker (`sw.js`)
 
 **Caching Strategy**:
 
-- **Cache-first** for app shell (HTML, CSS, JS, images)
+- **Cache-first** for app shell (HTML, CSS, JS, images, team data)
 - **Network-first** for dynamic content with fallbacks
-- **Offline-capable** PDF generation with all dependencies cached
+- **Offline-capable** PDF generation and team directory with all dependencies cached
+- **Multi-page support** for both main form and teams directory pages
 
-### 6. Web App Manifest (`manifest.json`)
+**Cached Resources**:
+
+- Main application (`index.html`, `teams.html`)
+- All stylesheets (`styles.css`, `teams.css`)
+- Complete JavaScript modules including team management
+- Hockey teams database (`hockey-teams.json`) for offline access
+
+### 8. Web App Manifest (`manifest.json`)
 
 **PWA Configuration**:
 
@@ -351,8 +456,20 @@ showStorageWarnings() {
 
 - **Auto-population chain**: Location → "Fait à" → intelligent defaults
 - **Conditional UI**: Travel payment options appear contextually
+- **Team Integration**: Automatic email display for known teams during input
+- **Autocomplete Enhancement**: HTML5 datalist with French hockey teams database
+- **Contextual Information**: Team contacts displayed below form when relevant
 - **Query parameter priority**: URL params override stored values
 - **Immediate persistence**: Real-time saving for important fields
+
+### Teams Directory Experience
+
+- **Dedicated Interface**: Separate page for comprehensive team browsing
+- **Real-time Search**: Debounced filtering across team names and email content
+- **Statistics Dashboard**: Live counts of teams, contacts, and search results
+- **Responsive Design**: Consistent branding and mobile optimization
+- **Navigation Integration**: Seamless movement between form and directory
+- **Offline Capability**: Complete team data available without internet
 
 ## Integration Capabilities
 
@@ -445,16 +562,68 @@ The included `Suivi NdF Arbitre.xlsx` enables:
 
 ### French Hockey Technical Integration
 
+- **Teams Database**: Comprehensive French hockey teams with official FFHG contact information
+- **Contact Management**: Labeled email addresses for different team roles (official addresses, etc.)
 - **League systems**: URL parameter integration with existing management tools
 - **Excel workflows**: Single-letter aliases enable complex league automation
 - **Multi-platform support**: iOS Safari compatibility for referee iPhones
+
+## Teams Database Structure
+
+### Data Format (`hockey-teams.json`)
+
+```json
+{
+  "teams": [
+    {
+      "name": "Team City Name",
+      "emails": [
+        {
+          "email": "contact@team.domain",
+          "label": "Contact Type Description"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Data Management Principles
+
+- **Centralized Source**: Single JSON file for all team contact information
+- **Offline First**: Complete database cached for offline access
+- **Search Optimization**: Structure optimized for both name and email searches
+- **Extensible Format**: Easy to add new contact types or team information
+- **French Hockey Focus**: Curated specifically for FFHG-affiliated teams
+
+### Integration Points
+
+- **Form Autocomplete**: HTML5 datalist populated from teams database
+- **Contextual Display**: Team emails shown automatically during form input
+- **Search Interface**: Dedicated teams directory with filtering capabilities
+- **Offline Access**: Complete functionality without internet connection
 
 ---
 
 ## Maintenance Notes for AI Assistants
 
-**Last Updated**: August 2025
+**Last Updated**: September 2025 (Teams Directory Implementation)
+**Major Features Added**:
+
+- Searchable teams directory with contact information
+- Team autocomplete with contextual email display
+- Multi-page PWA architecture with separate teams interface
+- Enhanced offline capabilities for complete team database
+
 **Next Review Due**: When major features are added or architecture changes
+
+**Recent Architecture Changes**:
+
+- Added `teams.html` with dedicated team directory interface
+- New `hockey-data.js` and `teams.js` modules for team management
+- Enhanced service worker caching for multi-page PWA support
+- Separated CSS for teams functionality (`teams.css`)
+- Integrated team data with main form for contextual email display
 
 **Update Triggers**:
 

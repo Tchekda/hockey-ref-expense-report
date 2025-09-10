@@ -25,13 +25,22 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 - **Expérience native** : Interface optimisée pour mobile et tablette
 - **Mise à jour automatique** : Nouvelles fonctionnalités transparentes
 
-### �📋 Formulaire Complet
+### 📋 Formulaire Complet
 
 - **Informations du match** : Date, heure, lieu, équipes, catégorie, position
 - **Données arbitre** : Nom, prénom, licence, adresse, email
 - **Indemnités** : Match et grand déplacement avec choix du payeur
 - **Coordonnées bancaires** : IBAN, BIC, RIB
 - **Signature** : Upload d'image ou espace pour signature manuscrite
+
+### 🏒 Répertoire des Équipes
+
+- **Base de données complète** : Liste des équipes françaises avec contacts officiels
+- **Recherche en temps réel** : Recherche par nom d'équipe ou adresse email
+- **Interface dédiée** : Page séparée avec tableau searchable et statistiques
+- **Autocomplete intelligent** : Suggestions automatiques lors de la saisie
+- **Affichage conditionnel** : Contacts automatiquement affichés pour les équipes connues
+- **Fonctionnement hors ligne** : Accès complet aux données même sans connexion
 
 ### 💰 Gestion des Indemnités Intelligente
 
@@ -44,9 +53,11 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 ### 📱 Interface Adaptative
 
 - **Design responsive** : Optimisé pour mobile, tablette et desktop
+- **Navigation intuitive** : Liens vers le répertoire des équipes et retour
 - **Capture photo** : Utilisation de l'appareil photo pour la signature sur mobile
 - **Validation en temps réel** : Vérification des champs obligatoires
 - **Formatage automatique** : IBAN avec espaces, dates au format français
+- **Affichage contextuel** : Contacts d'équipes affichés automatiquement lors de la saisie
 
 ### 💾 Sauvegarde Intelligente
 
@@ -90,9 +101,18 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 ### Pour Chaque Match
 
 1. **Remplissez les informations du match**
-2. **Saisissez les indemnités**
-3. **Vérifiez le lieu** (se remplit automatiquement dans "Fait à")
-4. **Cliquez sur "Générer PDF"**
+2. **Choisissez l'équipe locale** (autocomplete avec contacts automatiques)
+3. **Saisissez les indemnités**
+4. **Vérifiez le lieu** (se remplit automatiquement dans "Fait à")
+5. **Consultez les contacts** affichés pour l'équipe si disponibles
+6. **Cliquez sur "Générer PDF"**
+
+### Consultation du Répertoire des Équipes
+
+1. **Cliquez sur "Voir toutes les équipes et contacts"** en bas de la page principale
+2. **Utilisez la barre de recherche** pour filtrer par nom d'équipe ou email
+3. **Consultez les statistiques** en temps réel (équipes, contacts, résultats)
+4. **Cliquez sur les emails** pour envoyer un message directement
 
 ### Indemnité de Grand Déplacement
 
@@ -163,15 +183,21 @@ https://www.tchekda.fr/hockey-ref-expense-report/?matchDate=2025-08-24&matchTime
 
 ```
 ├── index.html              # Interface utilisateur PWA
+├── teams.html              # Répertoire des équipes et contacts
 ├── manifest.json           # Manifest PWA (installation mobile)
 ├── sw.js                   # Service Worker (cache, hors ligne)
 ├── css/
-│   └── styles.css          # Styles responsive
+│   ├── styles.css          # Styles responsive principal
+│   └── teams.css           # Styles dédiés au répertoire des équipes
 ├── js/
 │   ├── app.js              # Initialisation PWA
-│   ├── form-handler.js     # Gestion formulaire
+│   ├── form-handler.js     # Gestion formulaire et affichage contacts
 │   ├── pdf-generator.js    # Génération PDF + signatures
+│   ├── hockey-data.js      # Gestion des données équipes et autocomplete
+│   ├── teams.js            # Fonctionnalités du répertoire des équipes
 │   └── storage.js          # Stockage multi-plateforme
+├── data/
+│   └── hockey-teams.json   # Base de données des équipes françaises
 ├── img/
 │   └── arbitre.png         # Logo/icône
 └── README.md              # Cette documentation
