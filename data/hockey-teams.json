@@ -399,6 +399,10 @@
                 {
                     "email": "epinal.41002@ffhg.eu",
                     "label": "Adresse officielle "
+                },
+                {
+                    "email": "epinalhockeyclub@gmail.com",
+                    "label": "Table de marque (Cathy)"
                 }
             ]
         },
@@ -720,6 +724,19 @@
                 {
                     "email": "montblanc.82009@ffhg.eu",
                     "label": "Adresse officielle "
+                },
+                {
+                    "email": "stgervais.82019@ffhg.eu",
+                    "label": "Féminin Sénior"
+                }
+            ]
+        },
+        {
+            "name": "HC74",
+            "emails": [
+                {
+                    "email": "hc74@ffhg.eu",
+                    "label": "U18 & U20"
                 }
             ]
         },
@@ -937,7 +954,7 @@
                 },
                 {
                     "email": "gappro.93006@ffhg.eu",
-                    "label": "Pro"
+                    "label": "Pro & U20 Élite"
                 }
             ]
         },
