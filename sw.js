@@ -1,13 +1,15 @@
 // Service Worker for PWA functionality
-const CACHE_NAME = 'ndf-arbitre-v1';
+const CACHE_NAME = 'ndf-arbitre-v2';
 const urlsToCache = [
     '/',
     '/index.html',
     '/css/styles.css',
     '/js/app.js',
     '/js/storage.js',
+    '/js/hockey-data.js',
     '/js/pdf-generator.js',
     '/js/form-handler.js',
+    '/data/hockey-teams.json',
     '/img/arbitre.png',
     '/manifest.json',
     // External dependencies

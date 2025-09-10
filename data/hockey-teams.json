@@ -1,0 +1,1034 @@
+{
+    "teams": [
+        {
+            "name": "Saint Pierre",
+            "emails": [
+                {
+                    "email": "stpierremineur.00001@ffhg.eu",
+                    "label": "Adresse officielle "
+                },
+                {
+                    "email": "stpierrecougars.00002@ffhg.eu",
+                    "label": "Adresse officielle "
+                },
+                {
+                    "email": "stpierresporting.00003@ffhg.eu",
+                    "label": "Adresse officielle "
+                },
+                {
+                    "email": "stpierreharfangs.00020@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Argenteuil",
+            "emails": [
+                {
+                    "email": "argenteuil.11002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Asnieres",
+            "emails": [
+                {
+                    "email": "asnieres.11003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Mantes",
+            "emails": [
+                {
+                    "email": "mantes.11004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Dammarie",
+            "emails": [
+                {
+                    "email": "dammarie.11005@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Francais Volants",
+            "emails": [
+                {
+                    "email": "paris.11007@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Courbevoie",
+            "emails": [
+                {
+                    "email": "courbevoie.11009@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Cergy",
+            "emails": [
+                {
+                    "email": "cergy.11013@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "cergypro.11013@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Garges",
+            "emails": [
+                {
+                    "email": "garges.11014@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Neuilly sur Marne",
+            "emails": [
+                {
+                    "email": "neuillysurmarne.11015@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Meudon",
+            "emails": [
+                {
+                    "email": "meudon.11019@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Fontenay",
+            "emails": [
+                {
+                    "email": "fontenay.11022@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Vitry",
+            "emails": [
+                {
+                    "email": "vitry.11023@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Evry Viry",
+            "emails": [
+                {
+                    "email": "evryviry.11025@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Franconville",
+            "emails": [
+                {
+                    "email": "franconville.11027@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Champigny",
+            "emails": [
+                {
+                    "email": "champigny.11030@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Charleville Mezieres",
+            "emails": [
+                {
+                    "email": "charleville.21001@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Chalons",
+            "emails": [
+                {
+                    "email": "chalons.21002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Troyes",
+            "emails": [
+                {
+                    "email": "troyes.21004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Reims",
+            "emails": [
+                {
+                    "email": "reims.21005@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Amiens",
+            "emails": [
+                {
+                    "email": "amiens.22001@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "amienspro.22001@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Compiegne",
+            "emails": [
+                {
+                    "email": "compiegne.22002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Rouen",
+            "emails": [
+                {
+                    "email": "rouen.23001@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "rouenpro.23001@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Havre",
+            "emails": [
+                {
+                    "email": "lehavre.23002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Louviers",
+            "emails": [
+                {
+                    "email": "louviers.23003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Cléon",
+            "emails": [
+                {
+                    "email": "cleon.23004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Saint Martin",
+            "emails": [
+                {
+                    "email": "stmartin.23005@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Joue-Les-Tours",
+            "emails": [
+                {
+                    "email": "jouelestours.24002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Orleans",
+            "emails": [
+                {
+                    "email": "orleans.24004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Bourgueil",
+            "emails": [
+                {
+                    "email": "bourgueil.24005@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Tours",
+            "emails": [
+                {
+                    "email": "tours.24007@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Bourges",
+            "emails": [
+                {
+                    "email": "bourges.24008@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Romorantin",
+            "emails": [
+                {
+                    "email": "romorantin.24009@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Dreux",
+            "emails": [
+                {
+                    "email": "dreux.24010@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Caen",
+            "emails": [
+                {
+                    "email": "caen.25001@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Cherbourg",
+            "emails": [
+                {
+                    "email": "cherbourg.25003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Dijon",
+            "emails": [
+                {
+                    "email": "dijon.26004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Dunkerque",
+            "emails": [
+                {
+                    "email": "dunkerque.31002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Wasquehal",
+            "emails": [
+                {
+                    "email": "wasquehal.31003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Valenciennes",
+            "emails": [
+                {
+                    "email": "valenciennes.31004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Beauvais",
+            "emails": [
+                {
+                    "email": "beauvais.31005@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Epinal",
+            "emails": [
+                {
+                    "email": "epinal.41002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Toul",
+            "emails": [
+                {
+                    "email": "toul.41003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Amneville",
+            "emails": [
+                {
+                    "email": "amneville.41004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Metz",
+            "emails": [
+                {
+                    "email": "metz.41008@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Colmar",
+            "emails": [
+                {
+                    "email": "colmar.42001@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Mulhouse",
+            "emails": [
+                {
+                    "email": "mulhouse.42002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Strasbourg",
+            "emails": [
+                {
+                    "email": "strasbourg.42003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Besancon",
+            "emails": [
+                {
+                    "email": "besancon.43002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Belfort",
+            "emails": [
+                {
+                    "email": "belfort.43004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Cholet",
+            "emails": [
+                {
+                    "email": "cholet.52002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Le Mans",
+            "emails": [
+                {
+                    "email": "lemans.52003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "La Roche sur Yon",
+            "emails": [
+                {
+                    "email": "larochesuryon.52004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Nantes",
+            "emails": [
+                {
+                    "email": "nantes.52005@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Angers",
+            "emails": [
+                {
+                    "email": "angers.52007@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "angerspro.52007@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Brest",
+            "emails": [
+                {
+                    "email": "brest.53001@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Langeux",
+            "emails": [
+                {
+                    "email": "langueux.53002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Rennes",
+            "emails": [
+                {
+                    "email": "rennes.53006@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Lanester",
+            "emails": [
+                {
+                    "email": "lanester.53008@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Niort",
+            "emails": [
+                {
+                    "email": "niort.54001@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Poitiers",
+            "emails": [
+                {
+                    "email": "poitiers.54002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Chatellerault",
+            "emails": [
+                {
+                    "email": "chatellerault.54003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Anglet",
+            "emails": [
+                {
+                    "email": "anglet.72001@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "angletpro.72001@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Bordeaux",
+            "emails": [
+                {
+                    "email": "bordeaux.72003@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "bordeauxpro.72003@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Castres",
+            "emails": [
+                {
+                    "email": "castres.73001@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Toulouse",
+            "emails": [
+                {
+                    "email": "toulouse.73002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Cauterets",
+            "emails": [
+                {
+                    "email": "cauterets.73003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Brive",
+            "emails": [
+                {
+                    "email": "brive.74001@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Limoges",
+            "emails": [
+                {
+                    "email": "limoges.74003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Alpe D'Huez",
+            "emails": [
+                {
+                    "email": "alpedhuez.82001@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Les Houches",
+            "emails": [
+                {
+                    "email": "leshouches.82003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Chambéry",
+            "emails": [
+                {
+                    "email": "chambery.82004@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "chamberypro.82004@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Chamonix",
+            "emails": [
+                {
+                    "email": "chamonix.82005@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "chamonixpro.82005@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Grenoble",
+            "emails": [
+                {
+                    "email": "grenoble.82007@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "grenoblepro.82007@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Mont Blanc",
+            "emails": [
+                {
+                    "email": "montblanc.82009@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Albertville",
+            "emails": [
+                {
+                    "email": "albertville.82010@ffhg.eu",
+                    "label": "Adresse officielle "
+                },
+                {
+                    "email": "albertville.82027@ffhg.eu",
+                    "label": "Équipe loisir"
+                }
+            ]
+        },
+        {
+            "name": "La Clusaz",
+            "emails": [
+                {
+                    "email": "laclusaz.82014@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Lyon",
+            "emails": [
+                {
+                    "email": "lyon.82015@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Megeve",
+            "emails": [
+                {
+                    "email": "megeve.82016@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Morzine",
+            "emails": [
+                {
+                    "email": "morzine.82017@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Roanne",
+            "emails": [
+                {
+                    "email": "roanne.82018@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Saint Gervais",
+            "emails": [
+                {
+                    "email": "stgervais.82019@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Courchevel",
+            "emails": [
+                {
+                    "email": "courchevel.82020@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Valence",
+            "emails": [
+                {
+                    "email": "valence.82021@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Villard de Lans",
+            "emails": [
+                {
+                    "email": "villard.82022@ffhg.eu",
+                    "label": "Adresse officielle "
+                },
+                {
+                    "email": "villard.82008@ffhg.eu",
+                    "label": "Équipe Féminine"
+                }
+            ]
+        },
+        {
+            "name": "Vaujany",
+            "emails": [
+                {
+                    "email": "vaujany.82026@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Annecy",
+            "emails": [
+                {
+                    "email": "annecy.82028@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Samoens",
+            "emails": [
+                {
+                    "email": "samoens.82029@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Clermont",
+            "emails": [
+                {
+                    "email": "clermont.83001@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Mont-Dore",
+            "emails": [
+                {
+                    "email": "montdore.83002@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Le Lioran",
+            "emails": [
+                {
+                    "email": "lelioran.83003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Montpellier",
+            "emails": [
+                {
+                    "email": "montpellier.91003@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Narbonne",
+            "emails": [
+                {
+                    "email": "narbonne.91004@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Font Romeu",
+            "emails": [
+                {
+                    "email": "fontromeu.91006@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Nimes",
+            "emails": [
+                {
+                    "email": "nimes.91008@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "BRIANçON",
+            "emails": [
+                {
+                    "email": "briancon.93003@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "brianconpro.93003@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Gap",
+            "emails": [
+                {
+                    "email": "gap.93006@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "gap.93002@ffhg.eu",
+                    "label": "APH "
+                },
+                {
+                    "email": "gappro.93006@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Nice",
+            "emails": [
+                {
+                    "email": "nice.93008@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "nicepro.93008@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Orcieres",
+            "emails": [
+                {
+                    "email": "orcieres.93010@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Serre Chevalier",
+            "emails": [
+                {
+                    "email": "SERRECHEVALIER.93011@FFHG.EU",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Toulon",
+            "emails": [
+                {
+                    "email": "toulon.93012@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Avignon",
+            "emails": [
+                {
+                    "email": "avignon.93016@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Marseille",
+            "emails": [
+                {
+                    "email": "marseille.93019@ffhg.eu",
+                    "label": "Amateur"
+                },
+                {
+                    "email": "marseillepro.93019@ffhg.eu",
+                    "label": "Pro"
+                }
+            ]
+        },
+        {
+            "name": "Aubagne",
+            "emails": [
+                {
+                    "email": "aubagne.93020@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Auron",
+            "emails": [
+                {
+                    "email": "auron.93022@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Val d Allos",
+            "emails": [
+                {
+                    "email": "valdallos.93023@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        }
+    ]
+}

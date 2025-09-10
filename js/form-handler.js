@@ -10,6 +10,7 @@ class FormHandler {
     init() {
         this.bindEvents();
         this.setupAutoPopulation();
+        this.setupHockeyDataIntegration();
     }
 
     // Bind event listeners
@@ -89,6 +90,25 @@ class FormHandler {
         if (matchLocationField && matchLocationField.value) {
             this.updateDefaultLocation(matchLocationField.value);
         }
+    }
+
+    // Setup hockey data integration
+    setupHockeyDataIntegration() {
+        // Wait for hockey data to load before setting up enhanced functionality
+        const checkHockeyData = () => {
+            if (window.hockeyData && window.hockeyData.isLoaded) {
+                this.bindHockeyDataEvents();
+            } else {
+                // Check again in 100ms
+                setTimeout(checkHockeyData, 100);
+            }
+        };
+        checkHockeyData();
+    }
+
+    // Bind hockey data specific events
+    bindHockeyDataEvents() {
+        console.log('Hockey data integration active');
     }
 
     // Handle form submission

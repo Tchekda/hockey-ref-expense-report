@@ -257,6 +257,7 @@ showStorageWarnings() {
 - **Backward Compatibility**: Full parameter names still supported
 - **Excel Integration**: `Suivi NdF Arbitre.xlsx` for expense tracking
 - **URL Pre-filling**: Advanced form population from external systems
+- **Hockey Data Integration**: Team autocomplete functionality
 
 ## Form Fields & Data Flow
 
