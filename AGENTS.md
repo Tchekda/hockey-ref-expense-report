@@ -4,46 +4,57 @@
 
 ## Project Overview
 
-**Hockey Referee Expense Report Generator** - A client-side web application for French ice hockey referees to create professional PDF expense reports. Built with vanilla HTML/CSS/JavaScript with a focus on privacy, offline functionality, and ease of use.
+**Hockey Referee Expense Report Generator** - A Progressive Web App (PWA) for French ice hockey referees to create professional PDF expense reports. Built with vanilla HTML/CSS/JavaScript with PWA capabilities, focusing on privacy, offline functionality, cross-platform compatibility, and native mobile experience.
 
 ### Core Purpose
 
 - Generate official expense report PDFs for FFHG (Fédération Française de Hockey sur Glace) compliance
 - 100% client-side processing - no server communication
-- Data persistence using localStorage only
-- Mobile-responsive design for on-the-go usage
+- Progressive Web App with offline functionality and mobile installation
+- Cross-platform data persistence with iOS Safari fallbacks
 
 ## Architecture & Technology Stack
 
+### Progressive Web App (PWA) Features
+
+- **Service Worker** (`sw.js`): Offline caching, background sync capabilities
+- **Web App Manifest** (`manifest.json`): Mobile installation, app-like experience
+- **Native Installation**: Browser-provided installation prompts (Chrome, Safari, Edge)
+- **Offline Functionality**: Full PDF generation without internet connection
+
 ### Frontend Technologies
 
-- **HTML5**: Semantic form structure with proper accessibility
-- **CSS3**: Mobile-first responsive design with flexbox
-- **Vanilla JavaScript**: ES6+ classes, no frameworks
+- **HTML5**: Semantic PWA-enabled form structure with manifest links
+- **CSS3**: Mobile-first responsive design with device-specific optimizations
+- **Vanilla JavaScript**: ES6+ classes, PWA features, no frameworks
 - **jsPDF v2.5.1**: Client-side PDF generation library (CDN)
+- **Canvas API**: Image processing, signature handling
 
 ### Key Design Principles
 
 1. **Privacy First**: All data stays in browser, no server communication
-2. **Offline Capable**: Works completely offline after initial load
-3. **Mobile Optimized**: Camera capture for signatures, touch-friendly UI
-4. **Data Persistence**: Smart separation of persistent vs. temporary data
+2. **PWA Native Experience**: Installable app with offline capabilities
+3. **Cross-Platform Storage**: Multi-layer fallbacks for iOS Safari compatibility
+4. **Mobile Optimized**: Camera capture, touch-friendly UI, responsive header
+5. **Data Persistence**: Smart separation of persistent vs. temporary data with platform detection
 
 ## Project Structure
 
 ```
-├── index.html              # Main form interface
+├── index.html              # PWA-enabled form interface with manifest links
+├── manifest.json           # PWA manifest for mobile installation
+├── sw.js                   # Service Worker for offline functionality
 ├── css/
-│   └── styles.css          # Responsive styling, mobile-first approach
+│   └── styles.css          # Responsive styling with mobile/desktop header variants
 ├── js/
-│   ├── app.js              # Application initialization and coordination
-│   ├── form-handler.js     # Form validation and user interactions
-│   ├── pdf-generator.js    # PDF creation with jsPDF
-│   └── storage.js          # LocalStorage management and query params
+│   ├── app.js              # PWA initialization and native installation handling
+│   ├── form-handler.js     # Form validation, dual message display
+│   ├── pdf-generator.js    # PDF creation with signature image processing
+│   └── storage.js          # Multi-layer storage system with iOS Safari fallbacks
 ├── img/
-│   └── arbitre.png         # Application icon/logo
-├── README.md              # User documentation
-├── AGENTS.md              # This file - AI assistant documentation
+│   └── arbitre.png         # PWA icon and application logo
+├── README.md              # User documentation (updated with PWA features)
+├── AGENTS.md              # This file - AI assistant technical documentation
 ├── LICENCE.md             # MIT license
 └── Suivi NdF Arbitre.xlsx # Excel tracking file for report management
 ```
@@ -52,48 +63,72 @@
 
 ### 1. Form Management (`form-handler.js`)
 
-**Class**: `FormHandler`
+**Primary Class**: `FormHandler`
 
 - **Validation**: Real-time form validation with visual feedback
-- **File Upload**: Signature image handling with base64 conversion
-- **Event Handling**: Input formatting (IBAN), auto-population logic
-- **User Experience**: Loading states, success/error messages
+- **File Processing**: Multi-format signature handling (JPG, PNG) with conversion
+- **Dual Messages**: Enhanced user feedback with both generating and completion messages
+- **Event Handling**: Input formatting (IBAN), auto-population, mobile optimizations
 
 **Key Methods**:
 
-- `collectFormData()`: Gathers all form data including radio buttons
-- `validateForm()`: Validates required fields with visual feedback
-- `handleSignatureUpload()`: Processes signature images with size/type validation
-- `toggleTravelPaymentOptions()`: Shows/hides payment method selection
-- `updateDefaultLocation()`: Auto-fills "Fait à" from match location
+- `collectFormData()`: Comprehensive form data collection including file processing
+- `validateForm()`: Enhanced validation with dual message display
+- `handleSignatureUpload()`: Multi-format processing
+- `toggleTravelPaymentOptions()`: Smart payment method selection UI
+- `updateDefaultLocation()`: Auto-population with location intelligence
 
 ### 2. PDF Generation (`pdf-generator.js`)
 
 **Class**: `PDFGenerator`
 
-- **Layout**: A4 format with optimized margins (15mm)
-- **Typography**: Consistent font sizing and alignment system
-- **Sections**: Header, Match, Referee, Indemnity, Banking, Footer/Signature
-- **Alignment**: Pre-calculated positioning system for consistent value alignment
+- **Layout**: A4 format with optimized margins and responsive positioning
+- **Typography**: Consistent font sizing with device-specific adjustments
+- **Sections**: Header with logo, Match, Referee, Indemnity, Banking, Footer/Signature
+- **Advanced Image Processing**: Async image loading with signature integration
+- **Alignment System**: Pre-calculated positioning for consistent value alignment
 
 **Key Features**:
 
-- `calculateAlignmentPositions()`: Ensures consistent column alignment across sections
-- Smart indemnity section with separate alignment for long labels
-- Signature handling: Image embedding or manual signature space
-- French date formatting and currency display
-- Automatic filename generation: `NoteDeFrais_YYYY-MM-DD_LastName.pdf`
+- `calculateAlignmentPositions()`: Multi-section alignment system for consistent formatting
+- `loadImageAsync()`: Asynchronous image processing for signatures and logos
+- Advanced signature handling: Multi-format image embedding
+- Smart indemnity section with responsive alignment for varying label lengths
+- French localization: Date formatting, currency display, cultural conventions
+- Descriptive filename generation: `NoteDeFrais_MatchDate_Division_HomeTeam_vs_AwayTeam_RefereeName.pdf`
 
-**Critical Implementation Detail**:
-The PDF uses separate alignment calculations for different sections to handle varying label lengths, particularly in the indemnity section where "Indemnité de Grand Déplacement" requires special handling.
+**Critical Implementation Details**:
+
+- Separate alignment calculations for different sections accommodate varying label lengths
+- Async image loading prevents PDF generation blocking
+- Logo integration with fallback handling for missing images
 
 ### 3. Data Storage (`storage.js`)
 
 **Class**: `DataStorage`
 
-- **Persistent Data**: Personal info, banking details, signature (stays between sessions)
-- **Temporary Data**: Match info, indemnities (cleared on page refresh)
-- **Query Parameters**: URL-based form pre-filling with aliases for short URLs
+- **Multi-Layer Storage**: localStorage → sessionStorage → memory (iOS Safari fallbacks)
+- **Platform Detection**: Automatic iOS Safari private browsing detection
+- **Storage Availability**: Real-time storage capability assessment with user warnings
+- **Persistent Data**: Personal info, banking details, signature (cross-session)
+- **Temporary Data**: Match info, indemnities (session-only)
+- **Query Parameters**: Advanced URL pre-filling with single-letter aliases for Excel integration
+
+**Storage Architecture**:
+
+```javascript
+// Multi-layer storage strategy
+class DataStorage {
+  constructor() {
+    this.storageType = this.detectBestStorageMethod();
+    this.showStorageWarnings(); // iOS Safari compatibility
+  }
+
+  detectBestStorageMethod() {
+    // localStorage → sessionStorage → memory fallback
+  }
+}
+```
 
 **Data Categories**:
 
@@ -107,7 +142,9 @@ persistentFields: [
   "iban",
   "bic",
   "rib",
+  "signatureImage", // Cross-platform signature persistence
 ];
+
 temporaryFields: [
   "matchDate",
   "matchTime",
@@ -118,6 +155,7 @@ temporaryFields: [
   "position",
   "matchIndemnity",
   "travelIndemnity",
+  "travelPayment",
   "madeIn",
   "madeOn",
 ];
@@ -125,11 +163,58 @@ temporaryFields: [
 
 **Query Parameter System**:
 
-- Full parameter names and single-letter aliases (for Excel URL length limits)
-- Example: `matchDate=2025-08-24` or `a=2025-08-24`
-- Priority: Query params > localStorage > defaults
+- **Full parameter names** with **single-letter aliases** (Excel URL length compatibility)
+- **Example**: `matchDate=2025-08-24` or `a=2025-08-24`
+- **Priority order**: Query params > localStorage > defaults
+- **Excel Integration**: Short aliases enable complex URLs within Excel's limitations
 
-### 4. Application Initialization (`app.js`)
+**iOS Safari Compatibility**:
+
+```javascript
+isLocalStorageAvailable() {
+    // Detects private browsing, quota issues
+    // Returns appropriate storage method
+}
+
+showStorageWarnings() {
+    // User-friendly warnings for iOS Safari limitations
+}
+```
+
+### 4. PWA Management (`app.js`)
+
+**Purpose**: Progressive Web App initialization and native installation handling
+
+**Key Responsibilities**:
+
+- **Service Worker Registration**: Cache management and offline functionality
+- **PWA Installation**: Native browser installation handling (removed custom prompts)
+- **Feature Detection**: PWA capability assessment across browsers
+- **UI Initialization**: Form handlers, PDF generators, storage systems coordination
+
+**Critical PWA Implementation**:
+
+```javascript
+// Native browser installation (Chrome, Safari, Edge)
+// Removed custom beforeinstallprompt handling for better reliability
+```
+
+### 5. Service Worker (`sw.js`)
+
+**Caching Strategy**:
+
+- **Cache-first** for app shell (HTML, CSS, JS, images)
+- **Network-first** for dynamic content with fallbacks
+- **Offline-capable** PDF generation with all dependencies cached
+
+### 6. Web App Manifest (`manifest.json`)
+
+**PWA Configuration**:
+
+- **Simplified manifest** for maximum compatibility
+- **Installation prompts** handled by native browser UI
+- **Offline capability** declarations
+- **Mobile optimization** with proper icons and display modes
 
 **Class**: `ExpenseApp`
 
@@ -137,109 +222,146 @@ temporaryFields: [
 - **Keyboard Shortcuts**: Ctrl+S (save), Ctrl+Enter (generate PDF)
 - **Service Worker**: Ready for PWA implementation
 
-## Recent Significant Changes (Last 3 Commits)
+## Recent Significant Changes (Major Updates)
 
-### 1. Excel Integration (e1b883f)
+### 1. Progressive Web App Implementation
 
-- Added `Suivi NdF Arbitre.xlsx` for expense report tracking
-- Excel file likely contains macros/formulas for referee expense management
-- Added to .gitignore to prevent accidental commits of personal data
+- **Service Worker**: Complete offline functionality with intelligent caching
+- **Web App Manifest**: Native mobile installation capabilities
+- **Installation Optimization**: Switched to browser-native installation prompts
+- **Cross-Platform PWA**: Works on iOS, Android, and desktop platforms
 
-### 2. URL Alias System (78727da)
+### 2. iOS Safari Compatibility Overhaul
 
-- Implemented single-letter aliases for query parameters
-- Solves Excel's 255-character URL limit for hyperlinks
-- Maintains backward compatibility with full parameter names
+- **Multi-Layer Storage**: localStorage → sessionStorage → memory fallback system
+- **Private Browsing Support**: Automatic detection and alternative storage methods
+- **Storage Warnings**: User-friendly alerts for storage limitations
+- **Immediate Persistence**: Real-time saving for personal data fields
 
-### 3. Smart Auto-loading (dbf84bb)
+### 3. Advanced File Processing
 
-- Fixed club auto-loading from query parameters
-- Improved travel payment radio button handling
-- Enhanced query parameter processing reliability
+- **Multi-Format Images**: JPG, PNG signature compatibility
+- **Canvas API Integration**: Image processing and format conversion
+- **Async Image Loading**: Non-blocking PDF generation with signature integration
+
+### 4. User Experience Enhancements
+
+- **Dual Message Display**: Separate "generating" and "completion" feedback
+- **Responsive Header**: Device-specific logo positioning (mobile/desktop)
+- **Enhanced Mobile Experience**: Optimized touch interactions and layouts
+- **Storage Status Indicators**: Real-time storage capability feedback
+
+### 5. Excel Integration & URL System
+
+- **Query Parameter Aliases**: Single-letter shortcuts for Excel URL length limits
+- **Backward Compatibility**: Full parameter names still supported
+- **Excel Integration**: `Suivi NdF Arbitre.xlsx` for expense tracking
+- **URL Pre-filling**: Advanced form population from external systems
 
 ## Form Fields & Data Flow
 
-### Match Information (Temporary)
+### Match Information (Temporary - Session Only)
 
 - `matchDate`, `matchTime`, `matchLocation`
 - `homeTeam`, `awayTeam`
-- `category` (dropdown with FFHG divisions)
+- `category` (dropdown with FFHG divisions including new categories)
 - `position` (Arbitre Principal, Juge de Ligne, Arbitre)
 
-### Referee Information (Persistent)
+### Referee Information (Persistent - Cross-Session)
 
 - `firstName`, `lastName`, `licenseNumber`
 - `address` (multi-line), `email`
+- Auto-saved immediately on input for user convenience
 
-### Indemnities (Temporary)
+### Indemnities (Temporary - Match-Specific)
 
-- `matchIndemnity` (always paid by club)
-- `travelIndemnity` (optional, with payment method toggle)
-- `travelPayment` (radio: "FFHG" or "club")
+- `matchIndemnity` (always paid by club, required field)
+- `travelIndemnity` (optional, triggers payment method selection)
+- `travelPayment` (radio: "FFHG" default or "club")
+- Smart toggle visibility based on travelIndemnity > 0
 
-### Banking Details (Persistent)
+### Banking Details (Persistent - Cross-Session)
 
 - `iban`, `bic`, `rib`
 
 ### Footer/Signature (Mixed)
 
-- `madeIn` (auto-filled from match location)
-- `madeOn` (defaults to today)
-- `signature` (image file, persistent)
+- `iban`, `bic`, `rib` (secure local storage only)
+- Auto-saved for user convenience, never transmitted
+
+### Document Metadata (Auto-Generated)
+
+- `madeIn` (auto-filled from match location, editable)
+- `madeOn` (defaults to today, editable)
+- `signatureImage` (multi-format support, persistent storage)
+
+### Signature Processing (Advanced)
+
+- **Multi-format support**: JPG, PNG with automatic conversion
+- **Base64 storage**: Secure local persistence across sessions
+- **PDF integration**: Async loading during PDF generation
 
 ## Privacy & Security Implementation
 
-### Client-Side Only Processing
+### Client-Side Only Architecture
 
-- No server endpoints or API calls
-- No analytics or tracking scripts
-- No external dependencies except jsPDF CDN
+- **No server communication**: 100% browser-based processing
+- **No analytics**: No tracking scripts or external monitoring
+- **Minimal dependencies**: Only jsPDF CDN for PDF generation
+- **PWA security**: Service worker follows secure practices
 
-### Data Handling
+### Cross-Platform Data Handling
 
-- **localStorage**: Used only for persistent referee/banking data
-- **sessionStorage**: Not used (to ensure data clearing on browser restart)
-- **Cookies**: Not used
-- **File Uploads**: Processed locally, converted to base64, stored in localStorage
+- **Multi-layer storage**: localStorage → sessionStorage → memory
+- **iOS Safari compatibility**: Automatic private browsing detection
+- **Storage warnings**: User-friendly notifications for limitations
+- **Data isolation**: No cross-site data sharing or transmission
 
-### Form Security
+### Enhanced Security Measures
 
-- `autocomplete="off"` on temporary fields to prevent browser caching
-- Proper `autocomplete` attributes on persistent fields for UX
-- File input restricted to images only
+- **File processing**: Local image conversion, no external services
+- **Form security**: Appropriate autocomplete attributes and restrictions
+- **Storage encryption**: Browser's native storage security model
 
 ## UI/UX Design Patterns
 
-### Mobile-First Responsive Design
+### Progressive Web App Experience
 
-- Breakpoints optimized for mobile referee usage
-- Touch-friendly form controls
-- Camera capture integration for signatures
-- Optimized keyboard layouts for numeric inputs
+- **Native installation**: Browser-provided installation prompts
+- **Offline functionality**: Full PDF generation without internet
+- **App-like interface**: Responsive header with device-specific layouts
+- **Cross-platform consistency**: Unified experience across devices
 
-### Visual Feedback System
+### Advanced Mobile Experience
 
-- Real-time form validation with color coding
-- Loading states during PDF generation
-- Success/error messages with auto-dismiss
-- Progress indicators for multi-step processes
+- **Responsive headers**: Different layouts for mobile/desktop
+- **Touch optimization**: Enhanced mobile form interactions
+- **Camera integration**: Direct photo capture for signatures
+- **iOS Safari specific**: Optimized for iOS Safari limitations
 
-### Smart Form Behavior
+### Enhanced Feedback System
 
-- Auto-population of related fields (location → "Fait à")
-- Conditional field display (travel indemnity → payment options)
-- Persistent data pre-filling on page load
-- Query parameter prioritization
+- **Dual message display**: Separate generating/completion feedback
+- **Storage status indicators**: Real-time storage availability alerts
+- **Platform-specific warnings**: iOS Safari private browsing notifications
+- **Progress communication**: Clear user guidance throughout processes
+
+### Smart Form Intelligence
+
+- **Auto-population chain**: Location → "Fait à" → intelligent defaults
+- **Conditional UI**: Travel payment options appear contextually
+- **Query parameter priority**: URL params override stored values
+- **Immediate persistence**: Real-time saving for important fields
 
 ## Integration Capabilities
 
-### URL Pre-filling System
+### Advanced URL Pre-filling System
 
-Perfect for integration with:
+**Excel Integration**: Perfect for league management systems
 
-- Club websites generating referee assignment links
-- League management systems
-- Automated email systems
+- **Single-letter aliases**: Overcome Excel's 255-character URL limit
+- **Backward compatibility**: Full parameter names still supported
+- **Bulk generation**: Excel macros can generate multiple referee assignment links
 
 ### Example Integration URL:
 
@@ -247,69 +369,84 @@ Perfect for integration with:
 https://site.com/?a=2025-08-24&b=20:30&c=Patinoire&d=Lions&e=Dragons&f=Division%201&g=Arbitre&h=45&i=25&j=FFHG
 ```
 
-### Excel Integration
+### Club Website Integration
 
-The included Excel file suggests capability for:
+Perfect for integration with:
 
-- Referee assignment tracking
-- Expense report status monitoring
-- Bulk URL generation for multiple matches
+- **Club websites**: Automated referee assignment links
+- **League management systems**: Bulk assignment processing
+- **Email automation**: Pre-filled expense report links in assignment emails
+- **Mobile notifications**: Deep-linking for quick form completion
+
+### Excel Tracking System
+
+The included `Suivi NdF Arbitre.xlsx` enables:
+
+- **Assignment tracking**: Monitor referee schedules and payments
+- **Expense monitoring**: Track report completion and payment status
+- **URL generation**: Automated link creation with proper aliases
+- **Financial oversight**: League/club expense management integration
 
 ## Development Guidelines for AI Assistants
 
+### Progressive Web App Considerations
+
+- **Service Worker updates**: Careful cache versioning to avoid breaking changes
+- **Manifest changes**: Test PWA installation across platforms
+- **Offline functionality**: Ensure new features work without internet
+- **iOS Safari specifics**: Test private browsing and storage limitations
+
 ### Code Style & Patterns
 
-- **ES6+ Classes**: All major functionality wrapped in classes
-- **Event-Driven**: Heavy use of addEventListener for user interactions
-- **Error Handling**: Try-catch blocks with user-friendly error messages
-- **Modular Design**: Clear separation of concerns between classes
+- **ES6+ Classes**: All functionality properly encapsulated
+- **Async/Await**: Image processing and PWA features use modern async patterns
+- **Error Handling**: Comprehensive try-catch with user-friendly messaging
+- **Cross-platform compatibility**: Feature detection and graceful degradation
 
 ### When Making Changes
 
-1. **Always preserve privacy**: No server communication should ever be added
-2. **Maintain data flow**: Respect persistent vs. temporary data classification
-3. **Test mobile**: Verify changes work on mobile devices
-4. **Update AGENTS.md**: Document significant architectural changes here
-5. **Validate PDF output**: Ensure PDF generation still works after changes
+1. **Preserve PWA functionality**: Test offline capabilities after changes
+2. **Maintain iOS Safari compatibility**: Verify storage fallbacks still work
+3. **Update service worker**: Bump cache versions for significant changes
+4. **Verify dual messaging**: Check both generating and completion feedback
+5. **Update documentation**: Keep AGENTS.md current with architectural changes
 
 ### Common Modification Patterns
 
-- **Adding form fields**: Update relevant arrays in `storage.js`
-- **PDF layout changes**: Modify alignment calculations in `pdf-generator.js`
-- **New query parameters**: Add to `queryFields` object in `storage.js`
-- **UI changes**: Mobile-first approach in `styles.css`
+- **Adding PWA features**: Update manifest.json and service worker accordingly
+- **Storage changes**: Test all three storage layers (localStorage → sessionStorage → memory)
+- **Image processing**: Consider multi-format compatibility and conversion needs
+- **Mobile optimizations**: Test responsive header and device-specific layouts
+- **Cross-platform features**: Implement with progressive enhancement approach
 
-### Testing Considerations
+### Testing Priorities
 
-- **Browser compatibility**: Test on Chrome, Firefox, Safari, Edge
-- **Mobile testing**: iOS Safari, Chrome Mobile
-- **Offline functionality**: Verify works without internet
-- **Data persistence**: Test localStorage behavior across sessions
-- **PDF generation**: Verify output quality and formatting
+- **PWA installation**: Test on iOS, Android, and desktop platforms
+- **Offline functionality**: Verify complete PDF generation without internet
+- **iOS Safari private browsing**: Test all storage fallback mechanisms
+- **Multi-device responsive**: Test header layouts and form interactions
+- **Storage warnings**: Confirm user notifications for storage limitations
 
 ## Business Logic & Domain Knowledge
 
-### FFHG Compliance Requirements
+### FFHG Compliance & Standards
 
-- Specific sections required in expense reports
-- Payment method distinction (club vs. FFHG)
-- Official formatting and calculation rules
-- Signature requirements for legal validity
+- **Official PDF format**: Specific layout requirements for legal validity
+- **Payment method tracking**: Clear distinction between club and FFHG payments
+- **Expense categories**: Proper classification for federation reimbursement
 
-### Referee Workflow Understanding
+### Referee Mobile Workflow
 
-- Referees often travel between venues
-- Mobile usage common (filling out reports on-site)
-- Personal/banking data rarely changes
-- Match data unique per assignment
-- Time-sensitive report submission requirements
+- **On-site usage**: PWA installation enables app-like experience at venues
+- **Offline capability**: Generate reports even with poor venue internet
+- **Photo signatures**: Direct camera access for signature capture
+- **Cross-device sync**: Personal data available across referee's devices
 
-### French Hockey Ecosystem
+### French Hockey Technical Integration
 
-- Division structure (Magnus, D1, D2, D3, Youth categories)
-- Position types (Arbitre Principal, Juge de Ligne)
-- Regional travel patterns affecting indemnities
-- Club vs. Federation payment responsibilities
+- **League systems**: URL parameter integration with existing management tools
+- **Excel workflows**: Single-letter aliases enable complex league automation
+- **Multi-platform support**: iOS Safari compatibility for referee iPhones
 
 ---
 

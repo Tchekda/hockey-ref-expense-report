@@ -1,23 +1,31 @@
 # Générateur de Notes de Frais - Arbitres Hockey 🏒
 
-Un générateur de notes de frais en ligne spécialement conçu pour les arbitres de hockey sur glace français. Cette application web permet de créer facilement des PDFs professionnels pour les remboursements de frais d'arbitrage.
+Un générateur de notes de frais en ligne spécialement conçu pour les arbitres de hockey sur glace français. Cette **Progressive Web App (PWA)** permet de créer facilement des PDFs professionnels pour les remboursements de frais d'arbitrage, avec installation possible sur mobile pour une expérience native.
 
 ## 🔒 Confidentialité et Sécurité
 
 **IMPORTANT : Toutes vos données restent dans votre navigateur !**
 
 - ✅ **Aucune donnée n'est envoyée vers un serveur**
-- ✅ **Fonctionnement 100% hors ligne** après le premier chargement
-- ✅ **Stockage local uniquement** (localStorage de votre navigateur)
+- ✅ **Fonctionnement 100% hors ligne** après le premier chargement (PWA)
+- ✅ **Stockage local sécurisé** avec fallbacks iOS Safari
 - ✅ **Pas de cookies de tracking**
 - ✅ **Pas de collecte de données personnelles**
 - ✅ **Code source ouvert et transparent**
+- ✅ **Compatible iOS Safari mode privé**
 
 Vos informations personnelles, coordonnées bancaires et signatures restent privées et sécurisées sur votre appareil.
 
 ## ✨ Fonctionnalités
 
-### 📋 Formulaire Complet
+### � Progressive Web App (PWA)
+
+- **Installation mobile** : Ajout à l'écran d'accueil comme une vraie app
+- **Fonctionnement hors ligne** : Génération de PDF même sans internet
+- **Expérience native** : Interface optimisée pour mobile et tablette
+- **Mise à jour automatique** : Nouvelles fonctionnalités transparentes
+
+### �📋 Formulaire Complet
 
 - **Informations du match** : Date, heure, lieu, équipes, catégorie, position
 - **Données arbitre** : Nom, prénom, licence, adresse, email
@@ -43,8 +51,10 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 ### 💾 Sauvegarde Intelligente
 
 - **Sauvegarde automatique** des données persistantes (arbitre, banque)
+- **Stockage multi-plateforme** : Compatible iOS Safari, mode privé
 - **Pré-remplissage intelligent** : "Fait à" se remplit automatiquement avec le lieu du match
 - **Données temporaires** : Match et indemnités ne sont pas sauvegardées (pour éviter les erreurs)
+- **Détection automatique** : Alertes si le stockage n'est pas disponible
 
 ### 📄 Génération PDF Professionnelle
 
@@ -52,15 +62,30 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 - **Alignement parfait** des valeurs
 - **Formatage français** : Dates, monnaie, mise en page
 - **Gestion des signatures** : Images ou espace pour signature manuscrite
-- **Nom de fichier automatique** : `NoteDeFrais_YYYY-MM-DD_NomArbitre.pdf`
+- **Nom de fichier descriptif** : `NoteDeFrais_DateMatch_Division_EquipeDomicile_vs_EquipeVisiteuse_NomPrenom.pdf`
+- **Messages informatifs** : Double feedback pour le processus de génération
 
 ## 🚀 Utilisation
+
+### 📱 Installation PWA (Recommandée)
+
+**Sur Mobile :**
+
+1. **Ouvrez l'application** dans votre navigateur
+2. **Recherchez l'option "Installer"** ou "Ajouter à l'écran d'accueil"
+3. **Confirmez l'installation** pour une expérience native
+4. **Lancez l'app** directement depuis votre écran d'accueil
+
+**Sur Desktop :**
+
+- **Chrome/Edge** : Icône d'installation dans la barre d'adresse
+- **Safari** : Partage → Ajouter au Dock
 
 ### Première Utilisation
 
 1. **Remplissez vos informations personnelles** (arbitre + banque)
 2. **Cliquez sur "Sauvegarder les données"** pour les conserver
-3. **Ajoutez une photo de signature** (optionnel)
+3. **Ajoutez une photo de signature** (optionnel, supporte JPG, PNG)
 
 ### Pour Chaque Match
 
@@ -83,26 +108,25 @@ L'application supporte le pré-remplissage des champs via des paramètres d'URL,
 
 **Informations du match :**
 
-| Nom complet       | Alias | Description                          |
-|-------------------|-------|--------------------------------------|
-| `matchDate`       | `a`   | Date du match (format : YYYY-MM-DD) |
-| `matchTime`       | `b`   | Heure du match (format : HH:MM)     |
-| `matchLocation`   | `c`   | Lieu du match (texte libre)         |
-| `homeTeam`        | `d`   | Équipe locale (texte libre)         |
-| `awayTeam`        | `e`   | Équipe visiteuse (texte libre)      |
-| `category`        | `f`   | Catégorie (doit correspondre exactement aux options disponibles) |
-| `position`        | `g`   | Position (doit correspondre exactement aux options disponibles) |
+| Nom complet     | Alias | Description                                                      |
+| --------------- | ----- | ---------------------------------------------------------------- |
+| `matchDate`     | `a`   | Date du match (format : YYYY-MM-DD)                              |
+| `matchTime`     | `b`   | Heure du match (format : HH:MM)                                  |
+| `matchLocation` | `c`   | Lieu du match (texte libre)                                      |
+| `homeTeam`      | `d`   | Équipe locale (texte libre)                                      |
+| `awayTeam`      | `e`   | Équipe visiteuse (texte libre)                                   |
+| `category`      | `f`   | Catégorie (doit correspondre exactement aux options disponibles) |
+| `position`      | `g`   | Position (doit correspondre exactement aux options disponibles)  |
 
 **Indemnités :**
 
-| Nom complet         | Alias | Description                                      |
-|---------------------|-------|--------------------------------------------------|
-| `matchIndemnity`    | `h`   | Montant de l'indemnité de match (en euros)       |
-| `travelIndemnity`   | `i`   | Montant de l'indemnité de grand déplacement (en euros) |
-| `travelPayment`     | `j`   | Payeur du grand déplacement ("FFHG" ou "Club")   |
+| Nom complet       | Alias | Description                                            |
+| ----------------- | ----- | ------------------------------------------------------ |
+| `matchIndemnity`  | `h`   | Montant de l'indemnité de match (en euros)             |
+| `travelIndemnity` | `i`   | Montant de l'indemnité de grand déplacement (en euros) |
+| `travelPayment`   | `j`   | Payeur du grand déplacement ("FFHG" ou "Club")         |
 
 #### Exemple d'URL :
-
 
 #### Exemple d'URL :
 
@@ -121,28 +145,35 @@ https://www.tchekda.fr/hockey-ref-expense-report/?matchDate=2025-08-24&matchTime
 
 ### Technologies Utilisées
 
+- **Progressive Web App (PWA)** : Installation mobile, fonctionnement hors ligne
 - **HTML5/CSS3/JavaScript** : Technologies web standards
 - **jsPDF** : Génération de PDFs côté client
-- **LocalStorage** : Stockage local des données
+- **Service Worker** : Cache et fonctionnalités hors ligne
+- **Stockage multi-couches** : localStorage → sessionStorage → mémoire (iOS Safari)
 - **Responsive Design** : Adaptation automatique à tous les écrans
 
 ### Compatibilité
 
 - ✅ Chrome, Firefox, Safari, Edge (versions récentes)
 - ✅ iOS Safari, Chrome Mobile, Samsung Internet
-- ✅ Fonctionne hors ligne après le premier chargement
+- ✅ **Mode privé iOS Safari** avec fallbacks de stockage
+- ✅ Fonctionne hors ligne après installation PWA
 
 ### Structure du Projet
 
 ```
-├── index.html              # Interface utilisateur
+├── index.html              # Interface utilisateur PWA
+├── manifest.json           # Manifest PWA (installation mobile)
+├── sw.js                   # Service Worker (cache, hors ligne)
 ├── css/
 │   └── styles.css          # Styles responsive
 ├── js/
-│   ├── app.js              # Initialisation
-│   ├── form-handler.js     # Gestion du formulaire
-│   ├── pdf-generator.js    # Génération PDF
-│   └── storage.js          # Stockage local
+│   ├── app.js              # Initialisation PWA
+│   ├── form-handler.js     # Gestion formulaire
+│   ├── pdf-generator.js    # Génération PDF + signatures
+│   └── storage.js          # Stockage multi-plateforme
+├── img/
+│   └── arbitre.png         # Logo/icône
 └── README.md              # Cette documentation
 ```
 
@@ -168,6 +199,8 @@ cd hockey-ref-expense-report
 - **PDF ne se génère pas** : Vérifiez que tous les champs obligatoires sont remplis
 - **Données perdues** : Utilisez "Sauvegarder les données" pour les informations personnelles
 - **Signature floue** : Utilisez une image de bonne qualité (recommandé : fond blanc, encre noire)
+- **Stockage iOS Safari** : L'application détecte automatiquement les limitations et utilise des alternatives
+- **Installation PWA** : Utilisez le bouton d'installation du navigateur (plus fiable)
 
 ### Contact
 
