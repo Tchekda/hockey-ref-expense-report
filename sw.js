@@ -1,5 +1,5 @@
 // Service Worker for PWA functionality
-const CACHE_NAME = 'ndf-arbitre-v2';
+const CACHE_NAME = 'ndf-arbitre-v3';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -57,7 +57,7 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - network first, fallback to cache when offline
 self.addEventListener('fetch', (event) => {
     // Skip non-GET requests
     if (event.request.method !== 'GET') {
@@ -70,38 +70,41 @@ self.addEventListener('fetch', (event) => {
     }
 
     event.respondWith(
-        caches.match(event.request)
+        // Try network first
+        fetch(event.request)
             .then((response) => {
-                // Return cached version if available
-                if (response) {
-                    console.log('Service Worker: Serving from cache', event.request.url);
+                // Don't cache if not a valid response
+                if (!response || response.status !== 200 || response.type !== 'basic') {
                     return response;
                 }
 
-                // Otherwise fetch from network
-                console.log('Service Worker: Fetching from network', event.request.url);
-                return fetch(event.request).then((response) => {
-                    // Don't cache if not a valid response
-                    if (!response || response.status !== 200 || response.type !== 'basic') {
-                        return response;
-                    }
+                console.log('Service Worker: Serving from network', event.request.url);
 
-                    // Clone the response
-                    const responseToCache = response.clone();
+                // Clone the response to cache it
+                const responseToCache = response.clone();
 
-                    // Add to cache for future use
-                    caches.open(CACHE_NAME)
-                        .then((cache) => {
-                            cache.put(event.request, responseToCache);
-                        });
+                // Update cache with fresh content
+                caches.open(CACHE_NAME)
+                    .then((cache) => {
+                        cache.put(event.request, responseToCache);
+                    });
 
-                    return response;
-                });
+                return response;
             })
             .catch((error) => {
-                console.error('Service Worker: Fetch failed', error);
-                // You could return a fallback page here
-                throw error;
+                // Network failed, try to serve from cache
+                console.log('Service Worker: Network failed, trying cache', event.request.url);
+                return caches.match(event.request)
+                    .then((cachedResponse) => {
+                        if (cachedResponse) {
+                            console.log('Service Worker: Serving from cache (offline)', event.request.url);
+                            return cachedResponse;
+                        }
+
+                        // No cached version available
+                        console.error('Service Worker: No cached version available for', event.request.url);
+                        throw error;
+                    });
             })
     );
 });
