@@ -817,6 +817,15 @@
             ]
         },
         {
+            "name": "HCMP",
+            "emails": [
+                {
+                    "email": "courchevel.82020@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
             "name": "Valence",
             "emails": [
                 {
