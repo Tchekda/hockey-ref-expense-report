@@ -96,6 +96,7 @@ class FormHandler {
     setupHockeyDataIntegration() {
         // Wait for hockey data to load before setting up enhanced functionality
         const checkHockeyData = () => {
+            console.log('Checking hockey data load status...');
             if (window.hockeyData && window.hockeyData.isLoaded) {
                 this.bindHockeyDataEvents();
             } else {
@@ -108,7 +109,102 @@ class FormHandler {
 
     // Bind hockey data specific events
     bindHockeyDataEvents() {
+        const homeTeamInput = document.getElementById('homeTeam');
+
+        // Enhanced home team selection with email display
+        if (homeTeamInput) {
+            homeTeamInput.addEventListener('change', (e) => {
+                this.displayTeamEmails(e.target.value);
+            });
+
+            homeTeamInput.addEventListener('blur', (e) => {
+                this.displayTeamEmails(e.target.value);
+            });
+
+            // Check initial value when hockey data loads
+            if (homeTeamInput.value) {
+                this.displayTeamEmails(homeTeamInput.value);
+            }
+        }
+
         console.log('Hockey data integration active');
+    }
+
+    // Display team emails or warning message
+    displayTeamEmails(teamName) {
+        const emailContainer = document.getElementById('teamEmailsContainer');
+        if (!emailContainer) {
+            this.createEmailContainer();
+            return this.displayTeamEmails(teamName); // Retry after creating container
+        }
+
+        // Clear previous content
+        emailContainer.innerHTML = '';
+        emailContainer.style.display = 'none';
+
+        if (!teamName || !window.hockeyData || !window.hockeyData.isLoaded) {
+            return;
+        }
+
+        if (window.hockeyData.teamExists(teamName)) {
+            const emails = window.hockeyData.getTeamEmails(teamName);
+            if (emails && emails.length > 0) {
+                this.showTeamEmails(emailContainer, teamName, emails);
+            }
+        } else {
+            this.showTeamNotFoundWarning(emailContainer, teamName);
+        }
+    }
+
+    // Create email container if it doesn't exist
+    createEmailContainer() {
+        const formActions = document.querySelector('.form-actions');
+        if (!formActions) return;
+
+        const container = document.createElement('div');
+        container.id = 'teamEmailsContainer';
+        container.className = 'team-emails-container';
+
+        // Insert before the form actions
+        formActions.parentNode.insertBefore(container, formActions);
+    }
+
+    // Show team emails
+    showTeamEmails(container, teamName, emails) {
+        container.innerHTML = `
+            <div class="team-emails-header">
+                <h4>📧 Contacts pour ${teamName}</h4>
+            </div>
+            <div class="team-emails-list">
+                ${emails.map(emailObj => `
+                    <div class="email-item">
+                        <div class="email-label">${emailObj.label}</div>
+                        <div class="email-address">
+                            <a href="mailto:${emailObj.email}">${emailObj.email}</a>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="team-emails-footer">
+                <small>💡 Contactez-moi pour ajouter ou modifier des adresses mail</small>
+            </div>
+        `;
+        container.style.display = 'block';
+    }
+
+    // Show warning for unknown team
+    showTeamNotFoundWarning(container, teamName) {
+        container.innerHTML = `
+            <div class="team-warning">
+                <div class="warning-header">
+                    <span class="warning-icon">⚠️</span>
+                    <strong>Aucune adresse mail disponible</strong>
+                </div>
+                <p>Aucune adresse mail trouvée pour <strong>"${teamName}"</strong>.</p>
+                <p>Contactez-moi pour ajouter les informations correctes (coordonnées disponibles en bas de page).</p>
+            </div>
+        `;
+        container.style.display = 'block';
     }
 
     // Handle form submission

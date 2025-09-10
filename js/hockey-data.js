@@ -5,6 +5,7 @@
 class HockeyData {
     constructor() {
         this.teams = [];
+        this.teamEmails = new Map();
         this.isLoaded = false;
 
         this.loadData();
@@ -24,6 +25,9 @@ class HockeyData {
 
             // Process teams data
             this.teams = data.teams.map(team => team.name).sort();
+            data.teams.forEach(team => {
+                this.teamEmails.set(team.name, team.emails || []);
+            });
 
             this.isLoaded = true;
             this.initializeAutocomplete();
@@ -64,6 +68,20 @@ class HockeyData {
         });
     }
 
+    /**
+     * Get team emails for contact display
+     */
+    getTeamEmails(teamName) {
+        if (!this.isLoaded) return [];
+        return this.teamEmails.get(teamName) || [];
+    }
+
+    /**
+     * Check if team exists in the database
+     */
+    teamExists(teamName) {
+        return this.teams.includes(teamName);
+    }
 }
 
 // Global instance
@@ -72,4 +90,5 @@ let hockeyData = null;
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     hockeyData = new HockeyData();
+    window.hockeyData = hockeyData; // Make it globally accessible
 });
