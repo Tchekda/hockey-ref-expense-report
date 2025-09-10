@@ -35,9 +35,10 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 
 ### 🏒 Répertoire des Équipes
 
-- **Base de données complète** : Liste des équipes françaises avec contacts officiels
-- **Recherche en temps réel** : Recherche par nom d'équipe ou adresse email
-- **Interface dédiée** : Page séparée avec tableau searchable et statistiques
+- **Base de données complète** : Liste des équipes françaises avec contacts officiels et catégories
+- **Recherche en temps réel** : Recherche par nom d'équipe, catégorie ou adresse email
+- **Filtrage par catégorie** : Sélection par division (Division 1, 2, 3), niveau (U20, U18)
+- **Interface dédiée** : Page séparée avec tableau searchable, filtres et statistiques
 - **Autocomplete intelligent** : Suggestions automatiques lors de la saisie
 - **Affichage conditionnel** : Contacts automatiquement affichés pour les équipes connues
 - **Fonctionnement hors ligne** : Accès complet aux données même sans connexion
@@ -110,9 +111,16 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 ### Consultation du Répertoire des Équipes
 
 1. **Cliquez sur "Voir toutes les équipes et contacts"** en bas de la page principale
-2. **Utilisez la barre de recherche** pour filtrer par nom d'équipe ou email
-3. **Consultez les statistiques** en temps réel (équipes, contacts, résultats)
-4. **Cliquez sur les emails** pour envoyer un message directement
+2. **Utilisez la barre de recherche** pour filtrer par nom d'équipe, catégorie ou email
+3. **Sélectionnez une catégorie** dans le menu déroulant pour filtrer par division ou niveau
+4. **Consultez les statistiques** en temps réel (équipes, contacts, résultats)
+5. **Visualisez les catégories** sous forme de badges colorés pour chaque équipe
+6. **Cliquez sur les emails** pour envoyer un message directement
+
+**Types de catégories disponibles** :
+
+- **Divisions** : Division 1, Division 2, Division 3, ...
+- **Filtrage combiné** : Recherche textuelle + filtre catégorie
 
 ### Indemnité de Grand Déplacement
 

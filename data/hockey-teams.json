@@ -2,6 +2,7 @@
     "teams": [
         {
             "name": "Saint Pierre",
+            "categories": [],
             "emails": [
                 {
                     "email": "stpierremineur.00001@ffhg.eu",
@@ -23,6 +24,7 @@
         },
         {
             "name": "Argenteuil",
+            "categories": [],
             "emails": [
                 {
                     "email": "argenteuil.11002@ffhg.eu",
@@ -32,6 +34,9 @@
         },
         {
             "name": "Asnieres",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "asnieres.11003@ffhg.eu",
@@ -41,6 +46,7 @@
         },
         {
             "name": "Mantes",
+            "categories": [],
             "emails": [
                 {
                     "email": "mantes.11004@ffhg.eu",
@@ -50,6 +56,9 @@
         },
         {
             "name": "Dammarie",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "dammarie.11005@ffhg.eu",
@@ -59,6 +68,9 @@
         },
         {
             "name": "Francais Volants",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "paris.11007@ffhg.eu",
@@ -68,6 +80,9 @@
         },
         {
             "name": "Courbevoie",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "courbevoie.11009@ffhg.eu",
@@ -77,6 +92,9 @@
         },
         {
             "name": "Cergy",
+            "categories": [
+                "Synerglace Ligue Magnus"
+            ],
             "emails": [
                 {
                     "email": "cergy.11013@ffhg.eu",
@@ -90,6 +108,9 @@
         },
         {
             "name": "Garges",
+            "categories": [
+                "Loisir"
+            ],
             "emails": [
                 {
                     "email": "garges.11014@ffhg.eu",
@@ -99,6 +120,9 @@
         },
         {
             "name": "Neuilly sur Marne",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "neuillysurmarne.11015@ffhg.eu",
@@ -108,6 +132,9 @@
         },
         {
             "name": "Meudon",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "meudon.11019@ffhg.eu",
@@ -135,6 +162,9 @@
         },
         {
             "name": "Evry Viry",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "evryviry.11025@ffhg.eu",
@@ -153,6 +183,9 @@
         },
         {
             "name": "Champigny",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "champigny.11030@ffhg.eu",
@@ -171,6 +204,9 @@
         },
         {
             "name": "Chalons",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "chalons.21002@ffhg.eu",
@@ -189,6 +225,9 @@
         },
         {
             "name": "Reims",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "reims.21005@ffhg.eu",
@@ -198,6 +237,11 @@
         },
         {
             "name": "Amiens",
+            "categories": [
+                "Synerglace Ligue Magnus",
+                "U18",
+                "U20"
+            ],
             "emails": [
                 {
                     "email": "amiens.22001@ffhg.eu",
@@ -211,6 +255,9 @@
         },
         {
             "name": "Compiegne",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "compiegne.22002@ffhg.eu",
@@ -220,6 +267,11 @@
         },
         {
             "name": "Rouen",
+            "categories": [
+                "Synerglace Ligue Magnus",
+                "U20",
+                "U18"
+            ],
             "emails": [
                 {
                     "email": "rouen.23001@ffhg.eu",
@@ -278,6 +330,9 @@
         },
         {
             "name": "Orleans",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "orleans.24004@ffhg.eu",
@@ -296,6 +351,9 @@
         },
         {
             "name": "Tours",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "tours.24007@ffhg.eu",
@@ -332,6 +390,11 @@
         },
         {
             "name": "Caen",
+            "categories": [
+                "Division 1",
+                "U18",
+                "U20"
+            ],
             "emails": [
                 {
                     "email": "caen.25001@ffhg.eu",
@@ -350,6 +413,9 @@
         },
         {
             "name": "Dijon",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "dijon.26004@ffhg.eu",
@@ -359,6 +425,9 @@
         },
         {
             "name": "Dunkerque",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "dunkerque.31002@ffhg.eu",
@@ -377,6 +446,9 @@
         },
         {
             "name": "Valenciennes",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "valenciennes.31004@ffhg.eu",
@@ -395,6 +467,10 @@
         },
         {
             "name": "Epinal",
+            "categories": [
+                "Division 1",
+                "U18"
+            ],
             "emails": [
                 {
                     "email": "epinal.41002@ffhg.eu",
@@ -426,6 +502,9 @@
         },
         {
             "name": "Metz",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "metz.41008@ffhg.eu",
@@ -435,6 +514,9 @@
         },
         {
             "name": "Colmar",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "colmar.42001@ffhg.eu",
@@ -444,6 +526,9 @@
         },
         {
             "name": "Mulhouse",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "mulhouse.42002@ffhg.eu",
@@ -453,6 +538,11 @@
         },
         {
             "name": "Strasbourg",
+            "categories": [
+                "Division 1",
+                "U20",
+                "U18"
+            ],
             "emails": [
                 {
                     "email": "strasbourg.42003@ffhg.eu",
@@ -462,6 +552,9 @@
         },
         {
             "name": "Besancon",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "besancon.43002@ffhg.eu",
@@ -480,6 +573,9 @@
         },
         {
             "name": "Cholet",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "cholet.52002@ffhg.eu",
@@ -498,6 +594,9 @@
         },
         {
             "name": "La Roche sur Yon",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "larochesuryon.52004@ffhg.eu",
@@ -507,6 +606,11 @@
         },
         {
             "name": "Nantes",
+            "categories": [
+                "Division 1",
+                "U20",
+                "U18"
+            ],
             "emails": [
                 {
                     "email": "nantes.52005@ffhg.eu",
@@ -516,6 +620,9 @@
         },
         {
             "name": "Angers",
+            "categories": [
+                "Synerglace Ligue Magnus"
+            ],
             "emails": [
                 {
                     "email": "angers.52007@ffhg.eu",
@@ -529,6 +636,9 @@
         },
         {
             "name": "Brest",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "brest.53001@ffhg.eu",
@@ -574,6 +684,9 @@
         },
         {
             "name": "Poitiers",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "poitiers.54002@ffhg.eu",
@@ -592,6 +705,12 @@
         },
         {
             "name": "Anglet",
+            "categories": [
+                "Synerglace Ligue Magnus",
+                "Division 2",
+                "U20",
+                "U18"
+            ],
             "emails": [
                 {
                     "email": "anglet.72001@ffhg.eu",
@@ -605,6 +724,11 @@
         },
         {
             "name": "Bordeaux",
+            "categories": [
+                "Synerglace Ligue Magnus",
+                "U20",
+                "U18"
+            ],
             "emails": [
                 {
                     "email": "bordeaux.72003@ffhg.eu",
@@ -627,6 +751,9 @@
         },
         {
             "name": "Toulouse",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "toulouse.73002@ffhg.eu",
@@ -681,6 +808,9 @@
         },
         {
             "name": "Chambéry",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "chambery.82004@ffhg.eu",
@@ -694,6 +824,9 @@
         },
         {
             "name": "Chamonix",
+            "categories": [
+                "Synerglace Ligue Magnus"
+            ],
             "emails": [
                 {
                     "email": "chamonix.82005@ffhg.eu",
@@ -707,6 +840,11 @@
         },
         {
             "name": "Grenoble",
+            "categories": [
+                "Synerglace Ligue Magnus",
+                "U20",
+                "U18"
+            ],
             "emails": [
                 {
                     "email": "grenoble.82007@ffhg.eu",
@@ -720,6 +858,9 @@
         },
         {
             "name": "Mont Blanc",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "montblanc.82009@ffhg.eu",
@@ -733,6 +874,10 @@
         },
         {
             "name": "HC74",
+            "categories": [
+                "U20",
+                "U18"
+            ],
             "emails": [
                 {
                     "email": "hc74@ffhg.eu",
@@ -764,6 +909,9 @@
         },
         {
             "name": "Lyon",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "lyon.82015@ffhg.eu",
@@ -782,6 +930,9 @@
         },
         {
             "name": "Morzine",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "morzine.82017@ffhg.eu",
@@ -791,6 +942,9 @@
         },
         {
             "name": "Roanne",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "roanne.82018@ffhg.eu",
@@ -818,6 +972,9 @@
         },
         {
             "name": "HCMP",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "courchevel.82020@ffhg.eu",
@@ -827,6 +984,9 @@
         },
         {
             "name": "Valence",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "valence.82021@ffhg.eu",
@@ -836,6 +996,9 @@
         },
         {
             "name": "Villard de Lans",
+            "categories": [
+                "Division 1"
+            ],
             "emails": [
                 {
                     "email": "villard.82022@ffhg.eu",
@@ -849,6 +1012,9 @@
         },
         {
             "name": "Vaujany",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "vaujany.82026@ffhg.eu",
@@ -858,6 +1024,9 @@
         },
         {
             "name": "Annecy",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "annecy.82028@ffhg.eu",
@@ -876,6 +1045,9 @@
         },
         {
             "name": "Clermont",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "clermont.83001@ffhg.eu",
@@ -903,6 +1075,9 @@
         },
         {
             "name": "Montpellier",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "montpellier.91003@ffhg.eu",
@@ -930,6 +1105,9 @@
         },
         {
             "name": "Nimes",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "nimes.91008@ffhg.eu",
@@ -938,7 +1116,10 @@
             ]
         },
         {
-            "name": "BRIANçON",
+            "name": "Briançon",
+            "categories": [
+                "Synerglace Ligue Magnus"
+            ],
             "emails": [
                 {
                     "email": "briancon.93003@ffhg.eu",
@@ -952,6 +1133,11 @@
         },
         {
             "name": "Gap",
+            "categories": [
+                "Synerglace Ligue Magnus",
+                "U20",
+                "U18"
+            ],
             "emails": [
                 {
                     "email": "gap.93006@ffhg.eu",
@@ -969,6 +1155,9 @@
         },
         {
             "name": "Nice",
+            "categories": [
+                "Synerglace Ligue Magnus"
+            ],
             "emails": [
                 {
                     "email": "nice.93008@ffhg.eu",
@@ -1018,6 +1207,9 @@
         },
         {
             "name": "Marseille",
+            "categories": [
+                "Synerglace Ligue Magnus"
+            ],
             "emails": [
                 {
                     "email": "marseille.93019@ffhg.eu",

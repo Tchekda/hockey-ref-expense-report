@@ -169,6 +169,7 @@
   "teams": [
     {
       "name": "Team Name",
+      "categories": ["Division 1", "U20"],
       "emails": [
         {
           "email": "contact@team.com",
@@ -184,32 +185,53 @@
 
 **Class**: `TeamsDirectory`
 
-- **Search Functionality**: Real-time filtering by team name or email
+- **Search Functionality**: Real-time filtering by team name, categories, or email
+- **Category Filtering**: Dropdown filter for specific divisions and levels
 - **Statistics Display**: Dynamic counts of teams, contacts, and visible results
-- **Table Rendering**: Responsive team and contact information display
-- **Performance Optimization**: Debounced search with efficient filtering
+- **Table Rendering**: Responsive team, category, and contact information display
+- **Performance Optimization**: Debounced search with efficient multi-criteria filtering
 
 **Key Features**:
 
-- `performSearch(query)`: Multi-field search across team names and email data
-- `renderTable()`: Dynamic HTML table generation with contact information
+- `setupCategoryFilter()`: Dynamic category dropdown population from team data
+- `performFilter()`: Combined text search and category filtering with AND logic
+- `renderTable()`: Dynamic HTML table with category badges and contact information
 - `updateStats()`: Real-time statistics calculation and display
 - `escapeHtml()`: Security-focused HTML content sanitization
 
-**Search Algorithm**:
+**Enhanced Search Algorithm**:
 
 ```javascript
-// Searches team names and email addresses/labels
+// Multi-criteria search: team names, categories, email addresses/labels
 const filteredTeams = teams.filter((team) => {
+  // Text search across all fields
   const nameMatch = team.name.toLowerCase().includes(searchTerm);
   const emailMatch = team.emails.some(
     (emailObj) =>
       emailObj.email.toLowerCase().includes(searchTerm) ||
       emailObj.label.toLowerCase().includes(searchTerm)
   );
-  return nameMatch || emailMatch;
+  const categoryMatch =
+    team.categories &&
+    team.categories.some((category) =>
+      category.toLowerCase().includes(searchTerm)
+    );
+
+  // Category filter (exact match)
+  const categoryFilterMatch =
+    !selectedCategory ||
+    (team.categories && team.categories.includes(selectedCategory));
+
+  return (nameMatch || emailMatch || categoryMatch) && categoryFilterMatch;
 });
 ```
+
+**Category System**:
+
+- **Dynamic Population**: Categories extracted automatically from team data
+- **Visual Display**: Color-coded badges for each category
+- **Flexible Structure**: Teams can have multiple categories or none
+- **Filter Integration**: Combined with text search for precise results
 
 **Storage Architecture**:
 
@@ -465,7 +487,10 @@ showStorageWarnings() {
 ### Teams Directory Experience
 
 - **Dedicated Interface**: Separate page for comprehensive team browsing
-- **Real-time Search**: Debounced filtering across team names and email content
+- **Multi-criteria Search**: Debounced filtering across team names, categories, and email content
+- **Category Management**: Dynamic dropdown filters for divisions and competition levels
+- **Visual Category Display**: Color-coded badges showing team divisions and levels
+- **Combined Filtering**: Text search + category selection with AND logic
 - **Statistics Dashboard**: Live counts of teams, contacts, and search results
 - **Responsive Design**: Consistent branding and mobile optimization
 - **Navigation Integration**: Seamless movement between form and directory
@@ -577,6 +602,7 @@ The included `Suivi NdF Arbitre.xlsx` enables:
   "teams": [
     {
       "name": "Team City Name",
+      "categories": ["Division 1", "U20"],
       "emails": [
         {
           "email": "contact@team.domain",
@@ -591,16 +617,25 @@ The included `Suivi NdF Arbitre.xlsx` enables:
 ### Data Management Principles
 
 - **Centralized Source**: Single JSON file for all team contact information
+- **Category System**: Flexible array-based categorization for divisions and levels
 - **Offline First**: Complete database cached for offline access
-- **Search Optimization**: Structure optimized for both name and email searches
-- **Extensible Format**: Easy to add new contact types or team information
+- **Search Optimization**: Structure optimized for name, category, and email searches
+- **Extensible Format**: Easy to add new contact types, categories, or team information
 - **French Hockey Focus**: Curated specifically for FFHG-affiliated teams
+
+**Category Types**:
+
+- **Divisions**: Division 1, Division 2, Division 3 (competition levels)
+- **Age Groups**: Sénior, Junior (age-based categories)
+- **Competition Levels**: Elite (top-tier competition)
+- **Flexible Structure**: Teams can have multiple categories or none
 
 ### Integration Points
 
 - **Form Autocomplete**: HTML5 datalist populated from teams database
 - **Contextual Display**: Team emails shown automatically during form input
 - **Search Interface**: Dedicated teams directory with filtering capabilities
+- **Category Filtering**: Multi-level filtering by division, age group, and competition level
 - **Offline Access**: Complete functionality without internet connection
 
 ---

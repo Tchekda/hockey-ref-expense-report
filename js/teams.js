@@ -7,6 +7,7 @@ class TeamsDirectory {
 
     async init() {
         await this.loadTeams();
+        this.setupCategoryFilter();
         this.setupSearch();
         this.renderTable();
         this.updateStats();
@@ -30,28 +31,90 @@ class TeamsDirectory {
         searchInput.addEventListener('input', (e) => {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
-                this.performSearch(e.target.value);
+                this.performFilter();
             }, 300);
         });
     }
 
-    performSearch(query) {
-        const searchTerm = query.toLowerCase().trim();
+    setupCategoryFilter() {
+        const categoryFilter = document.getElementById('categoryFilter');
 
-        if (!searchTerm) {
+        // Collect all unique categories
+        const allCategories = new Set();
+        this.teams.forEach(team => {
+            if (team.categories && Array.isArray(team.categories)) {
+                team.categories.forEach(category => allCategories.add(category));
+            }
+        });
+
+        // Define category order to match main form dropdown
+        const categoryOrder = [
+            'Synerglace Ligue Magnus',
+            'Division 1',
+            'Division 2',
+            'Division 3',
+            'U20',
+            'U18',
+            'U15',
+            'Féminine',
+            'Para-hockey',
+            'Amicaux',
+            'Équipe de France',
+            'Internationaux',
+            'CHL',
+            'ContiCup',
+            'Autres'
+        ];
+
+        // Sort categories based on predefined order
+        const sortedCategories = categoryOrder.filter(category => allCategories.has(category));
+
+        // Populate the select dropdown
+        sortedCategories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.textContent = category;
+            categoryFilter.appendChild(option);
+        });
+
+        // Add event listener for category filter
+        categoryFilter.addEventListener('change', () => {
+            this.performFilter();
+        });
+    }
+
+    performFilter() {
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        const selectedCategory = categoryFilter.value;
+
+        if (!searchTerm && !selectedCategory) {
             this.filteredTeams = [...this.teams];
         } else {
             this.filteredTeams = this.teams.filter(team => {
-                // Search in team name
-                const nameMatch = team.name.toLowerCase().includes(searchTerm);
+                // Search filter
+                let searchMatch = true;
+                if (searchTerm) {
+                    const nameMatch = team.name.toLowerCase().includes(searchTerm);
+                    const emailMatch = team.emails.some(emailObj =>
+                        emailObj.email.toLowerCase().includes(searchTerm) ||
+                        emailObj.label.toLowerCase().includes(searchTerm)
+                    );
+                    const categoryMatch = team.categories && team.categories.some(category =>
+                        category.toLowerCase().includes(searchTerm)
+                    );
+                    searchMatch = nameMatch || emailMatch || categoryMatch;
+                }
 
-                // Search in email addresses and labels
-                const emailMatch = team.emails.some(emailObj =>
-                    emailObj.email.toLowerCase().includes(searchTerm) ||
-                    emailObj.label.toLowerCase().includes(searchTerm)
-                );
+                // Category filter
+                let categoryMatch = true;
+                if (selectedCategory) {
+                    categoryMatch = team.categories && team.categories.includes(selectedCategory);
+                }
 
-                return nameMatch || emailMatch;
+                return searchMatch && categoryMatch;
             });
         }
 
@@ -75,8 +138,18 @@ class TeamsDirectory {
 
         tbody.innerHTML = this.filteredTeams.map(team => `
             <tr>
-                <td class="team-name">${this.escapeHtml(team.name)}</td>
-                <td>
+                <td class="team-name" data-label="Équipe">${this.escapeHtml(team.name)}</td>
+                <td data-label="Catégories">
+                    <div class="categories-list">
+                        ${team.categories && team.categories.length > 0
+                ? team.categories.map(category =>
+                    `<span class="category-tag">${this.escapeHtml(category)}</span>`
+                ).join('')
+                : '<span class="no-categories">-</span>'
+            }
+                    </div>
+                </td>
+                <td data-label="Contacts">
                     <div class="email-list">
                         ${team.emails.map(emailObj => `
                             <div class="email-item">
