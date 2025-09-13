@@ -547,6 +547,10 @@
                 {
                     "email": "strasbourg.42003@ffhg.eu",
                     "label": "Adresse officielle "
+                },
+                {
+                    "email": "danielk@bbox.fr",
+                    "label": "Division 1"
                 }
             ]
         },
