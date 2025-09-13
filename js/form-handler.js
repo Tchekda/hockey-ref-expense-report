@@ -54,11 +54,11 @@ class FormHandler {
         // Auto-populate indemnity based on category and role
         const categoryField = document.getElementById('category');
         const positionField = document.getElementById('position');
-        
+
         categoryField.addEventListener('change', () => {
             this.updateIndemnity();
         });
-        
+
         positionField.addEventListener('change', () => {
             this.updateIndemnity();
         });
@@ -139,7 +139,39 @@ class FormHandler {
             }
         }
 
+        // Add listeners to update email links when form fields change
+        this.setupEmailLinkUpdaters();
+
         console.log('Hockey data integration active');
+    }
+
+    // Setup event listeners to update email links when form changes
+    setupEmailLinkUpdaters() {
+        const fieldsToWatch = ['matchDate', 'category', 'homeTeam', 'awayTeam', 'firstName', 'lastName'];
+
+        fieldsToWatch.forEach(fieldId => {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.addEventListener('input', () => {
+                    this.refreshEmailLinks();
+                });
+                field.addEventListener('change', () => {
+                    this.refreshEmailLinks();
+                });
+            }
+        });
+    }
+
+    // Refresh email links if team emails are currently displayed
+    refreshEmailLinks() {
+        const emailContainer = document.getElementById('teamEmailsContainer');
+        if (emailContainer && emailContainer.style.display === 'block') {
+            const homeTeamInput = document.getElementById('homeTeam');
+            if (homeTeamInput && homeTeamInput.value) {
+                // Re-display the team emails with updated links
+                this.displayTeamEmails(homeTeamInput.value);
+            }
+        }
     }
 
     // Display team emails or warning message
@@ -183,6 +215,9 @@ class FormHandler {
 
     // Show team emails
     showTeamEmails(container, teamName, emails) {
+        const subject = this.generateEmailSubject();
+        const body = this.generateEmailBody();
+
         container.innerHTML = `
             <div class="team-emails-header">
                 <h4>📧 Contacts pour ${teamName}</h4>
@@ -192,7 +227,7 @@ class FormHandler {
                     <div class="email-item">
                         <div class="email-label">${emailObj.label}</div>
                         <div class="email-address">
-                            <a href="mailto:${emailObj.email}">${emailObj.email}</a>
+                            <a href="mailto:${emailObj.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}">${emailObj.email}</a>
                         </div>
                     </div>
                 `).join('')}
@@ -202,6 +237,93 @@ class FormHandler {
             </div>
         `;
         container.style.display = 'block';
+    }
+
+    // Generate email subject line
+    generateEmailSubject() {
+        // Get form values
+        const matchDate = document.getElementById('matchDate')?.value || '[DATE]';
+        const category = document.getElementById('category')?.value || '[DIVISION]';
+        const homeTeam = document.getElementById('homeTeam')?.value || '';
+        const awayTeam = document.getElementById('awayTeam')?.value || '';
+        const refereeLastName = document.getElementById('lastName')?.value || '';
+
+        // Format match info
+        let matchInfo = '[MATCH]';
+        if (homeTeam && awayTeam) {
+            matchInfo = `${homeTeam} vs ${awayTeam}`;
+        } else if (homeTeam) {
+            matchInfo = homeTeam;
+        }
+
+        // Format referee name
+        let refereeName = '[NOM ARBITRE]';
+        if (refereeLastName) {
+            refereeName = `${refereeLastName}`;
+        }
+
+        // Format date
+        let formattedDate = matchDate;
+        if (matchDate && matchDate !== '[DATE]') {
+            try {
+                const date = new Date(matchDate);
+                formattedDate = date.toLocaleDateString('fr-FR');
+            } catch (e) {
+                formattedDate = matchDate;
+            }
+        }
+
+        return `Note de Frais Arbitrage ${formattedDate} ${category} ${matchInfo} ${refereeName}`;
+    }
+
+    // Generate email body
+    generateEmailBody() {
+        // Get form values
+        const matchDate = document.getElementById('matchDate')?.value || '[DATE]';
+        const category = document.getElementById('category')?.value || '[DIVISION]';
+        const homeTeam = document.getElementById('homeTeam')?.value || '';
+        const awayTeam = document.getElementById('awayTeam')?.value || '';
+        const refereeFirstName = document.getElementById('firstName')?.value || '';
+        const refereeLastName = document.getElementById('lastName')?.value || '';
+
+        // Format match info
+        let matchInfo = '[MATCH]';
+        if (homeTeam && awayTeam) {
+            matchInfo = `${homeTeam} vs ${awayTeam}`;
+        } else if (homeTeam) {
+            matchInfo = homeTeam;
+        }
+
+        // Format referee name
+        let refereeName = '[PRENOM & NOM ARBITRE]';
+        if (refereeFirstName && refereeLastName) {
+            refereeName = `${refereeFirstName} ${refereeLastName}`;
+        } else if (refereeLastName) {
+            refereeName = refereeLastName;
+        }
+
+        // Format date
+        let formattedDate = matchDate;
+        if (matchDate && matchDate !== '[DATE]') {
+            try {
+                const date = new Date(matchDate);
+                formattedDate = date.toLocaleDateString('fr-FR');
+            } catch (e) {
+                formattedDate = matchDate;
+            }
+        }
+
+        return `Bonjour,
+        
+Conformément au processus numérique d'indemnisation des arbitres, je vous prie de bien vouloir trouver ci-joint ma note d'arbitrage pour le match ${category} ${matchInfo} du ${formattedDate}.
+        
+{JOINDRE PDF}
+        
+Vous souhaitant bonne réception,
+Bien cordialement,
+
+
+${refereeName}`;
     }
 
     // Show warning for unknown team
@@ -481,7 +603,7 @@ class FormHandler {
         if (category && position && indemnityMatrix[category] && indemnityMatrix[category][position]) {
             const amount = indemnityMatrix[category][position];
             indemnityField.value = amount;
-            
+
             // Add visual feedback
             indemnityField.style.backgroundColor = '#e8f5e8';
             setTimeout(() => {
