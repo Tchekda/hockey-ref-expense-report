@@ -63,12 +63,6 @@ class FormHandler {
             this.updateIndemnity();
         });
 
-        // Show/hide travel payment toggle based on travel indemnity value
-        const travelIndemnityField = document.getElementById('travelIndemnity');
-        travelIndemnityField.addEventListener('input', (e) => {
-            this.toggleTravelPaymentOptions(e.target);
-        });
-
         // Set default location when match location changes
         const matchLocationField = document.getElementById('matchLocation');
         matchLocationField.addEventListener('input', (e) => {
@@ -89,12 +83,6 @@ class FormHandler {
         const madeOnField = document.getElementById('madeOn');
         if (madeOnField && !madeOnField.value) {
             madeOnField.value = new Date().toISOString().split('T')[0];
-        }
-
-        // Check travel indemnity on page load to show/hide toggle
-        const travelIndemnityField = document.getElementById('travelIndemnity');
-        if (travelIndemnityField) {
-            this.toggleTravelPaymentOptions(travelIndemnityField);
         }
 
         // Set initial default location if match location already has a value
@@ -518,18 +506,6 @@ ${refereeName}`;
             document.body.classList.add('loading');
         } else {
             document.body.classList.remove('loading');
-        }
-    }
-
-    // Toggle travel payment options based on travel indemnity value
-    toggleTravelPaymentOptions(input) {
-        const toggle = document.getElementById('travelPayment');
-        const value = parseFloat(input.value) || 0;
-
-        if (value > 0) {
-            toggle.style.display = 'block';
-        } else {
-            toggle.style.display = 'none';
         }
     }
 

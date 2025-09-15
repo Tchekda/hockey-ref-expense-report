@@ -47,8 +47,8 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 
 - **Indemnité de match** : Toujours payée par le club
 - **Indemnité de grand déplacement** :
-  - Choix entre "FFHG" ou "Club" selon le contexte
-  - Toggle automatique qui apparaît seulement si un montant > 0 est saisi
+  - Saisie du montant uniquement si payée par le club
+  - Aucun choix ou option de payeur, la FFHG n'est pas gérée
 - **Calcul automatique** du total
 
 ### 📱 Interface Adaptative
@@ -124,9 +124,7 @@ Vos informations personnelles, coordonnées bancaires et signatures restent priv
 
 ### Indemnité de Grand Déplacement
 
-- Si vous saisissez un montant > 0, des options apparaissent
-- **FFHG** : Remboursement par la Fédération (par défaut)
-- **Club** : Remboursement par le club receveur
+L'indemnité de grand déplacement ne doit être saisie que si elle est payée par le club. La FFHG n'est pas gérée par cette application.
 
 ### 🔗 Pré-remplissage par URL (Paramètres de requête)
 
@@ -148,18 +146,17 @@ L'application supporte le pré-remplissage des champs via des paramètres d'URL,
 
 **Indemnités :**
 
-| Nom complet       | Alias | Description                                            |
-| ----------------- | ----- | ------------------------------------------------------ |
-| `matchIndemnity`  | `h`   | Montant de l'indemnité de match (en euros)             |
-| `travelIndemnity` | `i`   | Montant de l'indemnité de grand déplacement (en euros) |
-| `travelPayment`   | `j`   | Payeur du grand déplacement ("FFHG" ou "Club")         |
+| Nom complet       | Alias | Description                                                                          |
+| ----------------- | ----- | ------------------------------------------------------------------------------------ |
+| `matchIndemnity`  | `h`   | Montant de l'indemnité de match (en euros)                                           |
+| `travelIndemnity` | `i`   | Montant de l'indemnité de grand déplacement (en euros, payée par le club uniquement) |
 
 #### Exemple d'URL :
 
 #### Exemple d'URL :
 
 ```
-https://www.tchekda.fr/hockey-ref-expense-report/?matchDate=2025-08-24&matchTime=20:30&matchLocation=Rouen&homeTeam=Dragons&awayTeam=Lions&category=Division%201&position=Arbitre%20Principal&matchIndemnity=45&travelIndemnity=25&travelPayment=FFHG
+https://www.tchekda.fr/hockey-ref-expense-report/?matchDate=2025-08-24&matchTime=20:30&matchLocation=Rouen&homeTeam=Dragons&awayTeam=Lions&category=Division%201&position=Arbitre%20Principal&matchIndemnity=45&travelIndemnity=25
 ```
 
 #### Notes importantes :

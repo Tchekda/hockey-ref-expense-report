@@ -291,11 +291,6 @@ class PDFGenerator {
         this.doc.text('Indemnité de Match:', this.margin, this.currentY);
         this.doc.setFont(undefined, 'normal');
         this.doc.text(matchIndemnity, this.indemnityValueX, this.currentY);
-        this.currentY += 6;
-
-        this.doc.setFontSize(8);
-        this.doc.setFont(undefined, 'italic');
-        this.doc.text('(payée par le club)', this.indemnityValueX, this.currentY);
         this.currentY += 8;
 
         if (data.travelIndemnity && parseFloat(data.travelIndemnity) > 0) {
@@ -307,10 +302,9 @@ class PDFGenerator {
             this.currentY += 6;
 
             // Use the payment method from form data, default to FFHG
-            const paymentMethod = data.travelPayment === 'Club' ? 'payée par le club' : 'payée par la FFHG';
             this.doc.setFontSize(8);
             this.doc.setFont(undefined, 'italic');
-            this.doc.text(`(${paymentMethod})`, this.indemnityValueX, this.currentY);
+            this.doc.text(`(Payée par le club)`, this.indemnityValueX, this.currentY);
             this.currentY += 8;
         }
 

@@ -104,7 +104,6 @@
 - `collectFormData()`: Comprehensive form data collection including file processing
 - `validateForm()`: Enhanced validation with dual message display
 - `handleSignatureUpload()`: Multi-format processing
-- `toggleTravelPaymentOptions()`: Smart payment method selection UI
 - `updateDefaultLocation()`: Auto-population with location intelligence
 - `displayTeamEmails()`: Show team contacts when home team is selected
 - `bindHockeyDataEvents()`: Integration with team data system
@@ -274,7 +273,6 @@ temporaryFields: [
   "position",
   "matchIndemnity",
   "travelIndemnity",
-  "travelPayment",
   "madeIn",
   "madeOn",
 ];
@@ -403,10 +401,9 @@ showStorageWarnings() {
 
 ### Indemnities (Temporary - Match-Specific)
 
-- `matchIndemnity` (always paid by club, required field)
-- `travelIndemnity` (optional, triggers payment method selection)
-- `travelPayment` (radio: "FFHG" default or "club")
-- Smart toggle visibility based on travelIndemnity > 0
+- `matchIndemnity` (toujours payée par le club, champ requis)
+- `travelIndemnity` (optionnelle, uniquement si payée par le club)
+- Aucun choix ou option de payeur, la FFHG n'est pas gérée
 
 ### Banking Details (Persistent - Cross-Session)
 

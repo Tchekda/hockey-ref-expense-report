@@ -143,21 +143,6 @@ class DataStorage {
                 }
             }
         });
-
-        // Clear radio buttons
-        const radioButtons = document.querySelectorAll('input[type="radio"]');
-        radioButtons.forEach(radio => {
-            if (radio.name === 'travelPayment') {
-                radio.checked = radio.value === 'FFHG'; // Reset to default
-                console.log("Resetting travelPayment to 'FFHG'");
-            }
-        });
-
-        // Hide travel payment toggle
-        const toggle = document.getElementById('travelPayment');
-        if (toggle) {
-            toggle.style.display = 'none';
-        }
     }
 
     // Get signature data from preview
@@ -219,7 +204,7 @@ class DataStorage {
             'matchDate': 'a', 'matchTime': 'b', 'matchLocation': 'c', 'homeTeam': 'd', 'awayTeam': 'e',
             'category': 'f', 'position': 'g',
             // Indemnity fields
-            'matchIndemnity': 'h', 'travelIndemnity': 'i', 'travelPayment': 'j'
+            'matchIndemnity': 'h', 'travelIndemnity': 'i'
         };
 
         let hasQueryData = false;
@@ -236,14 +221,6 @@ class DataStorage {
                             element.value = value;
                             hasQueryData = true;
                         }
-                    } else if (fieldId === 'travelPayment') {
-                        // Handle radio buttons for travel payment
-                        const radioButton = document.querySelector(`input[name="travelPayment"][value="${value}"]`);
-                        console.log("Setting travelPayment to", value, urlParams, radioButton);
-                        if (radioButton) {
-                            radioButton.checked = true;
-                            hasQueryData = true;
-                        }
                     } else {
                         // For other input types
                         element.value = value;
@@ -252,17 +229,6 @@ class DataStorage {
                 }
             }
         });
-
-        // If travel indemnity was set via query params, show the toggle
-        if (urlParams.get('travelIndemnity') || urlParams.get('i')) {
-            const travelIndemnityField = document.getElementById('travelIndemnity');
-            if (travelIndemnityField && parseFloat(travelIndemnityField.value) > 0) {
-                const toggle = document.getElementById('travelPayment');
-                if (toggle) {
-                    toggle.style.display = 'block';
-                }
-            }
-        }
 
         // If matchLocation was set via query params, auto-fill madeIn field
         const matchLocationValue = urlParams.get('matchLocation') || urlParams.get('c');
