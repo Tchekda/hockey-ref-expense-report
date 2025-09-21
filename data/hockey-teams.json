@@ -2,6 +2,11 @@
     "teams": [
         {
             "name": "Saint Pierre",
+            "alternateNames": [
+                "St Pierre",
+                "St-Pierre",
+                "Saint-Pierre"
+            ],
             "categories": [],
             "emails": [
                 {
@@ -34,6 +39,11 @@
         },
         {
             "name": "Asnieres",
+            "alternateNames": [
+                "Asnières",
+                "Asniere",
+                "Asnières-sur-Seine"
+            ],
             "categories": [
                 "Division 3"
             ],
@@ -46,6 +56,10 @@
         },
         {
             "name": "Mantes",
+            "alternateNames": [
+                "Mantes-la-Jolie",
+                "Mantes la Jolie"
+            ],
             "categories": [],
             "emails": [
                 {
@@ -68,6 +82,11 @@
         },
         {
             "name": "Francais Volants",
+            "alternateNames": [
+                "Français Volants",
+                "Francais-Volants",
+                "Français-Volants"
+            ],
             "categories": [
                 "Division 2"
             ],
@@ -92,6 +111,10 @@
         },
         {
             "name": "Cergy",
+            "alternateNames": [
+                "Cergy-Pontoise",
+                "Cergy Pontoise"
+            ],
             "categories": [
                 "Synerglace Ligue Magnus"
             ],
@@ -120,6 +143,10 @@
         },
         {
             "name": "Neuilly sur Marne",
+            "alternateNames": [
+                "Neuilly-sur-Marne",
+                "Neuilly"
+            ],
             "categories": [
                 "Division 1"
             ],
@@ -132,6 +159,10 @@
         },
         {
             "name": "Meudon",
+            "alternateNames": [
+                "Meudon-la-Forêt",
+                "Meudon la Forêt"
+            ],
             "categories": [
                 "Division 1"
             ],
@@ -162,6 +193,10 @@
         },
         {
             "name": "Evry Viry",
+            "alternateNames": [
+                "Évry-Viry",
+                "Evry Viry"
+            ],
             "categories": [
                 "Division 2"
             ],
@@ -195,6 +230,11 @@
         },
         {
             "name": "Charleville Mezieres",
+            "alternateNames": [
+                "Charleville-Mézières",
+                "Charleville Mezières",
+                "Charleville-Mézieres"
+            ],
             "emails": [
                 {
                     "email": "charleville.21001@ffhg.eu",
@@ -204,6 +244,13 @@
         },
         {
             "name": "Chalons",
+            "alternateNames": [
+                "Châlons",
+                "Chalons-en-Champagne",
+                "Châlons-en-Champagne",
+                "Chalons en Champagne",
+                "Châlons en Champagne"
+            ],
             "categories": [
                 "Division 2"
             ],
@@ -255,6 +302,9 @@
         },
         {
             "name": "Compiegne",
+            "alternateNames": [
+                "Compiègne"
+            ],
             "categories": [
                 "Division 3"
             ],
@@ -285,6 +335,10 @@
         },
         {
             "name": "Havre",
+            "alternateNames": [
+                "Le Havre",
+                "Le-Havre"
+            ],
             "emails": [
                 {
                     "email": "lehavre.23002@ffhg.eu",
@@ -312,6 +366,11 @@
         },
         {
             "name": "Saint Martin",
+            "alternateNames": [
+                "Saint-Martin",
+                "St Martin",
+                "St-Martin"
+            ],
             "emails": [
                 {
                     "email": "stmartin.23005@ffhg.eu",
@@ -321,6 +380,12 @@
         },
         {
             "name": "Joue-Les-Tours",
+            "alternateNames": [
+                "Joué-lès-Tours",
+                "Joue les Tours",
+                "Joué les Tours",
+                "Joué-lès-Tours"
+            ],
             "emails": [
                 {
                     "email": "jouelestours.24002@ffhg.eu",
@@ -330,6 +395,9 @@
         },
         {
             "name": "Orleans",
+            "alternateNames": [
+                "Orléans"
+            ],
             "categories": [
                 "Division 2"
             ],
@@ -467,6 +535,9 @@
         },
         {
             "name": "Epinal",
+            "alternateNames": [
+                "Épinal"
+            ],
             "categories": [
                 "Division 1",
                 "U18"
@@ -493,6 +564,9 @@
         },
         {
             "name": "Amneville",
+            "alternateNames": [
+                "Amnéville"
+            ],
             "emails": [
                 {
                     "email": "amneville.41004@ffhg.eu",
@@ -533,6 +607,10 @@
                 {
                     "email": "mulhouse.42002@ffhg.eu",
                     "label": "Adresse officielle "
+                },
+                {
+                    "email": "tresorier@scorpions-mineurs.fr",
+                    "label": "Division 2"
                 }
             ]
         },
@@ -555,7 +633,10 @@
             ]
         },
         {
-            "name": "Besancon",
+            "name": "Besançon",
+            "alternateNames": [
+                "Besancon"
+            ],
             "categories": [
                 "Division 3"
             ],
@@ -598,6 +679,10 @@
         },
         {
             "name": "La Roche sur Yon",
+            "alternateNames": [
+                "La Roche-sur-Yon",
+                "La Roche sur Yon"
+            ],
             "categories": [
                 "Division 2"
             ],
@@ -862,6 +947,9 @@
         },
         {
             "name": "Mont Blanc",
+            "alternateNames": [
+                "Mont-Blanc"
+            ],
             "categories": [
                 "Division 1"
             ],
@@ -925,6 +1013,9 @@
         },
         {
             "name": "Megeve",
+            "alternateNames": [
+                "Megève"
+            ],
             "emails": [
                 {
                     "email": "megeve.82016@ffhg.eu",
@@ -934,6 +1025,11 @@
         },
         {
             "name": "Morzine",
+            "alternateNames": [
+                "HCMA",
+                "Morzine Avoriaz",
+                "Morzine-Avoriaz"
+            ],
             "categories": [
                 "Division 1"
             ],
@@ -958,6 +1054,11 @@
         },
         {
             "name": "Saint Gervais",
+            "alternateNames": [
+                "Saint-Gervais",
+                "St Gervais",
+                "St-Gervais"
+            ],
             "emails": [
                 {
                     "email": "stgervais.82019@ffhg.eu",
@@ -1000,6 +1101,10 @@
         },
         {
             "name": "Villard de Lans",
+            "alternateNames": [
+                "Villard-de-Lans",
+                "Villard"
+            ],
             "categories": [
                 "Division 1"
             ],
@@ -1049,6 +1154,10 @@
         },
         {
             "name": "Clermont",
+            "alternateNames": [
+                "Clermont-Ferrand",
+                "Clermont Ferrand"
+            ],
             "categories": [
                 "Division 2"
             ],

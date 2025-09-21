@@ -24,8 +24,24 @@ class HockeyData {
             const data = await response.json();
 
             // Process teams data
-            this.teams = data.teams.map(team => team.name).sort();
+            this.teams = [];
+            this.teamEmails = new Map();
+            this.nameToTeam = new Map();
+            this.allNames = [];
+            this.mainNames = [];
             data.teams.forEach(team => {
+                // Add main name
+                this.teams.push(team.name);
+                this.allNames.push(team.name);
+                this.mainNames.push(team.name);
+                this.nameToTeam.set(team.name.toLowerCase(), team);
+                // Add alternate names
+                if (team.alternateNames && Array.isArray(team.alternateNames)) {
+                    team.alternateNames.forEach(alt => {
+                        this.allNames.push(alt);
+                        this.nameToTeam.set(alt.toLowerCase(), team);
+                    });
+                }
                 this.teamEmails.set(team.name, team.emails || []);
             });
 
@@ -46,7 +62,7 @@ class HockeyData {
      * Initialize autocomplete datalists
      */
     initializeAutocomplete() {
-        this.createDataList('teamsList', this.teams);
+        this.createDataList('teamsList', this.mainNames.sort());
     }
 
     /**
@@ -73,14 +89,15 @@ class HockeyData {
      */
     getTeamEmails(teamName) {
         if (!this.isLoaded) return [];
-        return this.teamEmails.get(teamName) || [];
+        const team = this.nameToTeam.get((teamName || '').toLowerCase());
+        return team && team.emails ? team.emails : [];
     }
 
     /**
      * Check if team exists in the database
      */
     teamExists(teamName) {
-        return this.teams.includes(teamName);
+        return this.nameToTeam.has((teamName || '').toLowerCase());
     }
 }
 

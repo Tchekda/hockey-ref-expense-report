@@ -98,6 +98,7 @@ class TeamsDirectory {
                 let searchMatch = true;
                 if (searchTerm) {
                     const nameMatch = team.name.toLowerCase().includes(searchTerm);
+                    const altMatch = (team.alternateNames || []).some(alt => alt.toLowerCase().includes(searchTerm));
                     const emailMatch = team.emails.some(emailObj =>
                         emailObj.email.toLowerCase().includes(searchTerm) ||
                         emailObj.label.toLowerCase().includes(searchTerm)
@@ -105,7 +106,7 @@ class TeamsDirectory {
                     const categoryMatch = team.categories && team.categories.some(category =>
                         category.toLowerCase().includes(searchTerm)
                     );
-                    searchMatch = nameMatch || emailMatch || categoryMatch;
+                    searchMatch = nameMatch || altMatch || emailMatch || categoryMatch;
                 }
 
                 // Category filter
