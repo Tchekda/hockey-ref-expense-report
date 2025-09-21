@@ -667,3 +667,10 @@ The included `Suivi NdF Arbitre.xlsx` enables:
 - Integration capabilities additions
 
 **Version Tracking**: Use git commit messages to track changes mentioned in this file.
+
+## Version Auto-Reload & Git Hook
+
+- The app checks `version.json` for updates on window focus.
+- If a new version is found and the form is empty, the app reloads automatically.
+- If the form is being filled, a banner appears with a reload button to avoid data loss.
+- A git pre-commit hook updates `version.json` with the current date and commit hash before each commit. Make sure the hook is executable (`chmod +x .git/hooks/pre-commit`).

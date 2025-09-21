@@ -166,6 +166,26 @@ https://www.tchekda.fr/hockey-ref-expense-report/?matchDate=2025-08-24&matchTime
 - Les valeurs de `category` et `position` doivent **correspondre exactement** aux options du formulaire
 - Si `travelIndemnity` > 0, le toggle de choix du payeur s'affiche automatiquement
 
+## 🔄 Auto-Reload Feature
+
+The app automatically checks for new versions using `version.json` whenever the window gains focus. If a new version is detected:
+
+- If the main form is empty, the app reloads automatically.
+- If the user is filling in the form, a notification banner appears at the top with a button to reload the app manually, preventing data loss.
+
+## 🛠 Git Hook: Auto-update version.json
+
+To ensure users always get the latest version, a git pre-commit hook updates `version.json` with the current date and commit hash before each commit. This keeps the app version in sync with your changes.
+
+### Setup for Other Developers
+
+1. Copy `.git/hooks/pre-commit` from the repo root to your local `.git/hooks/` directory if not already present.
+2. Make it executable:
+   ```sh
+   chmod +x .git/hooks/pre-commit
+   ```
+3. Now, every commit will update `version.json` automatically.
+
 ## 🛠️ Aspect Technique
 
 ### Technologies Utilisées

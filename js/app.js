@@ -131,3 +131,75 @@ window.addEventListener('unhandledrejection', (e) => {
     console.error('Unhandled promise rejection:', e.reason);
     e.preventDefault();
 });
+
+// --- Version auto-refresh logic ---
+(function versionAutoRefresh() {
+    let currentVersion = null;
+    const VERSION_URL = '/version.json';
+    const CRITICAL_FIELDS = [
+        'matchTime',
+        'matchLocation',
+        'homeTeam',
+        'awayTeam',
+        'category',
+        'position'
+    ];
+    let updateBanner = null;
+
+    function areCriticalFieldsEmpty() {
+        return CRITICAL_FIELDS.every(id => {
+            const el = document.getElementById(id);
+            return !el || !el.value;
+        });
+    }
+
+    function showUpdateBanner() {
+        if (updateBanner) return; // Already shown
+        updateBanner = document.createElement('div');
+        updateBanner.className = 'update-banner';
+        updateBanner.innerHTML = `
+            <div style="display:flex;align-items:center;gap:1em;justify-content:center;">
+                <span>🔄 Une nouvelle version de l'application est disponible.</span>
+                <button id="reloadAppBtn" style="padding:0.5em 1em;font-weight:bold;">Recharger</button>
+            </div>
+        `;
+        Object.assign(updateBanner.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            background: '#1e40af',
+            color: 'white',
+            zIndex: 9999,
+            textAlign: 'center',
+            padding: '1em',
+            fontSize: '1.1em',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+        });
+        document.body.appendChild(updateBanner);
+        document.getElementById('reloadAppBtn').onclick = () => location.reload(true);
+    }
+
+    async function checkVersion() {
+        try {
+            const response = await fetch(VERSION_URL + '?t=' + Date.now(), { cache: 'no-store' });
+            if (!response.ok) return;
+            const data = await response.json();
+            if (!currentVersion) {
+                currentVersion = data.version;
+            } else if (data.version !== currentVersion) {
+                // Version changed
+                if (areCriticalFieldsEmpty()) {
+                    location.reload(true);
+                } else {
+                    showUpdateBanner();
+                }
+            }
+        } catch (e) {
+            // Ignore errors (offline, etc.)
+        }
+    }
+
+    window.addEventListener('focus', checkVersion);
+    checkVersion(); // Initial check
+})();
