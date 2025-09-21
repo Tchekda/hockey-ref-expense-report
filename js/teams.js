@@ -154,15 +154,67 @@ class TeamsDirectory {
                         ${team.emails.map(emailObj => `
                             <div class="email-item">
                                 <div class="email-label">${this.escapeHtml(emailObj.label)}</div>
-                                <a href="mailto:${this.escapeHtml(emailObj.email)}" class="email-address">
-                                    ${this.escapeHtml(emailObj.email)}
-                                </a>
+                                <span class="copy-email-link" data-email="${this.escapeHtml(emailObj.email)}" title="Copier l'adresse email" style="color:#2563eb;cursor:pointer;text-decoration:underline;">${this.escapeHtml(emailObj.email)}</span>
+                                <button class="open-mail-btn" data-email="${this.escapeHtml(emailObj.email)}" title="Ouvrir l'application email" style="background:none;border:none;cursor:pointer;padding:0 0.3em;">
+                                    <span style="font-size:1.1em;">📧</span>
+                                </button>
                             </div>
                         `).join('')}
                     </div>
                 </td>
             </tr>
         `).join('');
+
+        // Add event listeners for copy and open mail
+        setTimeout(() => {
+            // Copy email on click
+            const copyLinks = tbody.querySelectorAll('.copy-email-link');
+            copyLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const email = link.getAttribute('data-email');
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(email);
+                    } else {
+                        // fallback
+                        const temp = document.createElement('input');
+                        temp.value = email;
+                        document.body.appendChild(temp);
+                        temp.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(temp);
+                    }
+                    link.style.color = 'green';
+                    link.textContent = '✔️ Copié';
+                    setTimeout(() => {
+                        link.style.color = '#2563eb';
+                        link.textContent = email;
+                    }, 1200);
+                });
+            });
+            // Open mail app on icon click
+            const mailBtns = tbody.querySelectorAll('.open-mail-btn');
+            mailBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const email = btn.getAttribute('data-email');
+                    // Use default subject/body for directory
+                    const subject = encodeURIComponent('Note de Frais Arbitrage');
+                    const body = encodeURIComponent('Bonjour,\n\nVeuillez trouver ci-joint ma note de frais d\'arbitrage.\n\n{JOINDRE PDF}');
+                    const mailto = `mailto:${email}?subject=${subject}&body=${body}`;
+                    window.open(mailto, '_blank');
+                });
+            });
+        }, 0);
+
+        // Add explanatory text below the table if not already present
+        let expl = document.getElementById('teams-email-expl');
+        if (!expl) {
+            expl = document.createElement('div');
+            expl.id = 'teams-email-expl';
+            expl.innerHTML = `<small style="display:block;margin:1em 0 0.5em 0;line-height:1.5;">💡 Cliquer sur l'adresse <u>copie l'adresse email</u> dans le presse-papiers.<br><span style="font-weight:bold;">📧</span> Cliquer sur l'icône ouvre votre application email avec le destinataire et le corps du message pré-remplis, mais vous devrez joindre le PDF manuellement.</small>`;
+            table.parentNode.appendChild(expl);
+        }
     }
 
     updateStats() {

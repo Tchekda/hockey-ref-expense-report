@@ -211,19 +211,62 @@ class FormHandler {
                 <h4>📧 Contacts pour ${teamName}</h4>
             </div>
             <div class="team-emails-list">
-                ${emails.map(emailObj => `
+                ${emails.map((emailObj) => `
                     <div class="email-item">
                         <div class="email-label">${emailObj.label}</div>
-                        <div class="email-address">
-                            <a href="mailto:${emailObj.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}">${emailObj.email}</a>
+                        <div class="email-address" style="display:flex;align-items:center;gap:0.5em;">
+                            <span class="copy-email-link" data-email="${emailObj.email}" title="Copier l'adresse email" style="color:#2563eb;cursor:pointer;text-decoration:underline;">${emailObj.email}</span>
+                            <button class="open-mail-btn" data-email="${emailObj.email}" title="Ouvrir l'application email" style="background:none;border:none;cursor:pointer;padding:0;">
+                                <span style="font-size:1.1em;">📩</span>
+                            </button>
                         </div>
                     </div>
                 `).join('')}
             </div>
             <div class="team-emails-footer">
-                <small>💡 Contactez-moi pour ajouter ou modifier des adresses mail</small>
+                <small>💡 Cliquer sur l'adresse <u>copie l'adresse email</u> dans le presse-papiers.<br>
+                <span style="font-weight:bold;">📩</span> Cliquer sur l'icône ouvre votre application email avec le destinataire et le corps du message pré-remplis, mais vous devrez joindre le PDF manuellement.</small><br>
+                <small>Contactez-moi pour ajouter ou modifier des adresses mail</small>
             </div>
         `;
+        // Add copy-to-clipboard and open-mail event listeners
+        setTimeout(() => {
+            // Copy email on click
+            const copyLinks = container.querySelectorAll('.copy-email-link');
+            copyLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const email = link.getAttribute('data-email');
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(email);
+                    } else {
+                        // fallback
+                        const temp = document.createElement('input');
+                        temp.value = email;
+                        document.body.appendChild(temp);
+                        temp.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(temp);
+                    }
+                    link.style.color = 'green';
+                    link.textContent = '✔️ Copié';
+                    setTimeout(() => {
+                        link.style.color = '#2563eb';
+                        link.textContent = email;
+                    }, 1200);
+                });
+            });
+            // Open mail app on icon click
+            const mailBtns = container.querySelectorAll('.open-mail-btn');
+            mailBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const email = btn.getAttribute('data-email');
+                    const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    window.open(mailto, '_blank');
+                });
+            });
+        }, 0);
         container.style.display = 'block';
     }
 
