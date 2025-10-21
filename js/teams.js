@@ -152,15 +152,18 @@ class TeamsDirectory {
                 </td>
                 <td data-label="Contacts">
                     <div class="email-list">
-                        ${team.emails.map(emailObj => `
+                        ${team.emails.map(emailObj => {
+                            const subject = encodeURIComponent('Note de Frais Arbitrage');
+                            const body = encodeURIComponent('Bonjour,\\n\\nVeuillez trouver ci-joint ma note de frais d\'arbitrage.\\n\\n{JOINDRE PDF}');
+                            return `
                             <div class="email-item">
                                 <div class="email-label">${this.escapeHtml(emailObj.label)}</div>
                                 <span class="copy-email-link" data-email="${this.escapeHtml(emailObj.email)}" title="Copier l'adresse email" style="color:#2563eb;cursor:pointer;text-decoration:underline;">${this.escapeHtml(emailObj.email)}</span>
-                                <button class="open-mail-btn" data-email="${this.escapeHtml(emailObj.email)}" title="Ouvrir l'application email" style="background:none;border:none;cursor:pointer;padding:0 0.3em;">
+                                <a href="mailto:${this.escapeHtml(emailObj.email)}?subject=${subject}&body=${body}" class="open-mail-btn" title="Ouvrir l'application email" style="background:none;border:none;cursor:pointer;padding:0 0.3em;text-decoration:none;">
                                     <span style="font-size:1.1em;">📧</span>
-                                </button>
+                                </a>
                             </div>
-                        `).join('')}
+                        `;}).join('')}
                     </div>
                 </td>
             </tr>
@@ -191,19 +194,6 @@ class TeamsDirectory {
                         link.style.color = '#2563eb';
                         link.textContent = email;
                     }, 1200);
-                });
-            });
-            // Open mail app on icon click
-            const mailBtns = tbody.querySelectorAll('.open-mail-btn');
-            mailBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const email = btn.getAttribute('data-email');
-                    // Use default subject/body for directory
-                    const subject = encodeURIComponent('Note de Frais Arbitrage');
-                    const body = encodeURIComponent('Bonjour,\n\nVeuillez trouver ci-joint ma note de frais d\'arbitrage.\n\n{JOINDRE PDF}');
-                    const mailto = `mailto:${email}?subject=${subject}&body=${body}`;
-                    window.open(mailto, '_blank');
                 });
             });
         }, 0);

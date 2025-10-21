@@ -216,9 +216,9 @@ class FormHandler {
                         <div class="email-label">${emailObj.label}</div>
                         <div class="email-address" style="display:flex;align-items:center;gap:0.5em;">
                             <span class="copy-email-link" data-email="${emailObj.email}" title="Copier l'adresse email" style="color:#2563eb;cursor:pointer;text-decoration:underline;">${emailObj.email}</span>
-                            <button class="open-mail-btn" data-email="${emailObj.email}" title="Ouvrir l'application email" style="background:none;border:none;cursor:pointer;padding:0;">
+                            <a href="mailto:${emailObj.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}" class="open-mail-btn" title="Ouvrir l'application email" style="background:none;border:none;cursor:pointer;padding:0;text-decoration:none;">
                                 <span style="font-size:1.1em;">📩</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 `).join('')}
@@ -254,16 +254,6 @@ class FormHandler {
                         link.style.color = '#2563eb';
                         link.textContent = email;
                     }, 1200);
-                });
-            });
-            // Open mail app on icon click
-            const mailBtns = container.querySelectorAll('.open-mail-btn');
-            mailBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const email = btn.getAttribute('data-email');
-                    const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                    window.open(mailto, '_blank');
                 });
             });
         }, 0);
