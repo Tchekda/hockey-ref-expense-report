@@ -174,6 +174,9 @@ class FormHandler {
         emailContainer.innerHTML = '';
         emailContainer.style.display = 'none';
 
+        // Trim whitespace from team name
+        teamName = (teamName || '').trim();
+
         if (!teamName || !window.hockeyData || !window.hockeyData.isLoaded) {
             return;
         }
