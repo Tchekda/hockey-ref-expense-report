@@ -153,9 +153,9 @@ class TeamsDirectory {
                 <td data-label="Contacts">
                     <div class="email-list">
                         ${team.emails.map(emailObj => {
-                            const subject = encodeURIComponent('Note de Frais Arbitrage');
-                            const body = encodeURIComponent('Bonjour,\\n\\nVeuillez trouver ci-joint ma note de frais d\'arbitrage.\\n\\n{JOINDRE PDF}');
-                            return `
+                const subject = encodeURIComponent('Note de Frais Arbitrage');
+                const body = encodeURIComponent('Bonjour,\\n\\nVeuillez trouver ci-joint ma note de frais d\'arbitrage.\\n\\n{JOINDRE PDF}');
+                return `
                             <div class="email-item">
                                 <div class="email-label">${this.escapeHtml(emailObj.label)}</div>
                                 <span class="copy-email-link" data-email="${this.escapeHtml(emailObj.email)}" title="Copier l'adresse email" style="color:#2563eb;cursor:pointer;text-decoration:underline;">${this.escapeHtml(emailObj.email)}</span>
@@ -163,7 +163,8 @@ class TeamsDirectory {
                                     <span style="font-size:1.1em;">📧</span>
                                 </a>
                             </div>
-                        `;}).join('')}
+                        `;
+            }).join('')}
                     </div>
                 </td>
             </tr>
