@@ -623,12 +623,12 @@
             ],
             "emails": [
                 {
-                    "email": "strasbourg.42003@ffhg.eu",
-                    "label": "Adresse officielle "
-                },
-                {
                     "email": "strasbourgpro.42003@ffhg.eu",
                     "label": "Division 1"
+                },
+                {
+                    "email": "strasbourg.42003@ffhg.eu",
+                    "label": "Adresse officielle "
                 }
             ]
         },
