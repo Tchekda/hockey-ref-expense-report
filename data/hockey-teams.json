@@ -902,12 +902,12 @@
             ],
             "emails": [
                 {
-                    "email": "chambery.82004@ffhg.eu",
-                    "label": "Amateur"
+                    "email": "chamberypro.82004@ffhg.eu",
+                    "label": "Division 1"
                 },
                 {
-                    "email": "chamberypro.82004@ffhg.eu",
-                    "label": "Pro"
+                    "email": "chambery.82004@ffhg.eu",
+                    "label": "Amateur"
                 }
             ]
         },
@@ -1068,6 +1068,18 @@
         },
         {
             "name": "Courchevel",
+            "emails": [
+                {
+                    "email": "courchevel.82020@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Méribel",
+            "alternateNames": [
+                "Meribel"
+            ],
             "emails": [
                 {
                     "email": "courchevel.82020@ffhg.eu",
