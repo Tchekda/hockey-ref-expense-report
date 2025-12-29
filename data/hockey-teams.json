@@ -730,6 +730,10 @@
             ],
             "emails": [
                 {
+                    "email": "brestpro.53001@ffhg.eu",
+                    "label": "Division 2"
+                },
+                {
                     "email": "brest.53001@ffhg.eu",
                     "label": "Adresse officielle "
                 }
