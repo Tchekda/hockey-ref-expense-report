@@ -92,6 +92,10 @@
             ],
             "emails": [
                 {
+                    "email": "parispro.11007@ffhg.eu",
+                    "label": "Division 2"
+                },
+                {
                     "email": "paris.11007@ffhg.eu",
                     "label": "Adresse officielle "
                 }
@@ -132,6 +136,7 @@
         {
             "name": "Garges",
             "categories": [
+                "Division 3",
                 "Loisir"
             ],
             "emails": [
@@ -505,6 +510,9 @@
         },
         {
             "name": "Wasquehal",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "wasquehal.31003@ffhg.eu",
@@ -681,7 +689,8 @@
             "name": "La Roche sur Yon",
             "alternateNames": [
                 "La Roche-sur-Yon",
-                "La Roche sur Yon"
+                "La Roche sur Yon",
+                "Hogly"
             ],
             "categories": [
                 "Division 2"
@@ -754,6 +763,9 @@
         },
         {
             "name": "Rennes",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "rennes.53006@ffhg.eu",
@@ -804,7 +816,6 @@
             "name": "Anglet",
             "categories": [
                 "Synerglace Ligue Magnus",
-                "Division 2",
                 "U20",
                 "U18"
             ],
@@ -869,6 +880,9 @@
         },
         {
             "name": "Brive",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "brive.74001@ffhg.eu",
@@ -1098,7 +1112,7 @@
         {
             "name": "HCMP",
             "categories": [
-                "Division 1"
+                "Division 2"
             ],
             "emails": [
                 {
@@ -1110,7 +1124,7 @@
         {
             "name": "Valence",
             "categories": [
-                "Division 2"
+                "Division 1"
             ],
             "emails": [
                 {
@@ -1322,6 +1336,9 @@
         },
         {
             "name": "Toulon",
+            "categories": [
+                "Division 2"
+            ],
             "emails": [
                 {
                     "email": "toulon.93012@ffhg.eu",
@@ -1331,6 +1348,9 @@
         },
         {
             "name": "Avignon",
+            "categories": [
+                "Division 3"
+            ],
             "emails": [
                 {
                     "email": "avignon.93016@ffhg.eu",
@@ -1377,6 +1397,18 @@
             "emails": [
                 {
                     "email": "valdallos.93023@ffhg.eu",
+                    "label": "Adresse officielle "
+                }
+            ]
+        },
+        {
+            "name": "Luxembourg",
+            "categories": [
+                "Division 2"
+            ],
+            "emails": [
+                {
+                    "email": "loic.darras@tornadoluxembourg.com",
                     "label": "Adresse officielle "
                 }
             ]
